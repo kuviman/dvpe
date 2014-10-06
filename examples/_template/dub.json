@@ -1,0 +1,9 @@
+{
+	"name": "VPE Example Template",
+	"targetPath": "bin",
+	"targetType": "executable",
+	"dependencies": {
+		"vpe": "~master"
+	},
+	"sourcePaths": ["."]
+}

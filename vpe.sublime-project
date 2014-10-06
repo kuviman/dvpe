@@ -1,0 +1,19 @@
+{
+	"folders": [{
+		"follow_symlinks": true,
+		"path": ".",
+		"folder_exclude_patterns": [".dub", "bin"],
+		"file_exclude_patterns": [".gitignore"]
+	}],
+	"build_systems": [{
+		"name": "vpe",
+		"shell_cmd": "dub build",
+		"working_dir": "$file_path",
+		"variants": [
+			{
+				"name": "Run",
+				"shell_cmd": "dub"
+			}
+		]
+	}]
+}

@@ -1,0 +1,10 @@
+{
+	"name": "vpe",
+	"targetType": "sourceLibrary",
+	"targetPath": "bin",
+	"dependencies": {
+		"derelict-glfw3": "~master",
+		"derelict-gl3": "~master",
+		"derelict-sdl2": "~master"
+	}
+}
