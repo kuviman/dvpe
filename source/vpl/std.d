@@ -4,6 +4,7 @@ public {
 	import std.math;
 }
 
+import std.exception : enforce;
 import std.algorithm : min, max;
 import std.conv : to;
 import std.traits : CommonType, TypeTuple, isFloatingPoint;
