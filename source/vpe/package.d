@@ -1,6 +1,7 @@
 module vpe;
 
 public {
+	import vpe.clock;
 }
 
 import vpe.internal;
