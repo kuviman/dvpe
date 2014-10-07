@@ -9,6 +9,7 @@ public {
 }
 
 GLFWwindow* window, coreWindow;
+bool vpeTerminated = false;
 
 void initalizeVPE() {
 	log("Initializing VPE");
@@ -50,4 +51,6 @@ void terminateVPE() {
 
 	log("Teminate GLFW");
 	glfwTerminate();
+
+	vpeTerminated = true;
 }
