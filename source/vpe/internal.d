@@ -6,6 +6,8 @@ public {
 
 	import derelict.glfw3.glfw3;
 	import derelict.opengl3.gl3;
+
+	import raw = vpe.rawgl;
 }
 
 GLFWwindow* window, coreWindow;
