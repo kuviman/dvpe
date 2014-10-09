@@ -2,7 +2,7 @@ module vpe.rawgl.texture;
 
 import vpe.rawgl;
 
-class Texture {
+class RawTexture {
 	this() {
 		glGenTextures(1, &id);
 		log("Creating texture (id = %s)", id);

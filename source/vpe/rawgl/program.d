@@ -2,8 +2,8 @@ module vpe.rawgl.program;
 
 import vpe.rawgl;
 
-class Program {
-	this(Shader[] shaders...) {
+class RawProgram {
+	this(RawShader[] shaders...) {
 		this.shaders = shaders;
 		id = glCreateProgram();
 		log("Creating program (id = %s)", id);
@@ -21,7 +21,7 @@ class Program {
 			throw new Exception(log.to!string);
 		}
 	}
-	Shader[] shaders;
+	RawShader[] shaders;
 	~this() {
 		if (vpeTerminated) return;
 		freeQ.push(id);

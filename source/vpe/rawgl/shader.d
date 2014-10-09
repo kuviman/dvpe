@@ -2,7 +2,7 @@ module vpe.rawgl.shader;
 
 import vpe.rawgl;
 
-class Shader {
+class RawShader {
 	this(GLenum type, string text) {
 		id = glCreateShader(type);
 		log("Creating shader (id = %s)", id);

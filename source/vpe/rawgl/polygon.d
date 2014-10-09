@@ -2,7 +2,7 @@ module vpe.rawgl.polygon;
 
 import vpe.rawgl;
 
-class Polygon {
+class RawPolygon {
 	GLuint VAO, VBO;
 	int cnt;
 
@@ -34,7 +34,7 @@ class Polygon {
 		glEnableVertexAttribArray(loc);
 	}
 
-	void render(Program program) {
+	void render(RawProgram program) {
 		glBindVertexArray(VAO);
 		GLint posLoc = glGetAttribLocation(program, "position");
 		initAttr(posLoc);
