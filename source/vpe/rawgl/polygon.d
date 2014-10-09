@@ -6,6 +6,8 @@ class RawPolygon {
 	GLuint VAO, VBO;
 	int cnt;
 
+	vec3[] points;
+
 	this(vec2[] points...) {
 		vec3[] p3;
 		foreach (p; points)
@@ -13,6 +15,10 @@ class RawPolygon {
 		this(p3);
 	}
 	this(vec3[] points...) {
+		this.points = points.dup;
+	}
+
+	void init() {
 		glGenVertexArrays(1, &VAO);
 		log("Creating VAO (id = %s)", VAO);
 		glBindVertexArray(VAO);
@@ -35,6 +41,10 @@ class RawPolygon {
 	}
 
 	void render(RawProgram program) {
+		if (myWindow !is window) {
+			init();
+			myWindow = window;
+		}
 		glBindVertexArray(VAO);
 		GLint posLoc = glGetAttribLocation(program, "position");
 		initAttr(posLoc);
@@ -43,9 +53,14 @@ class RawPolygon {
 
 	~this() {
 		if (vpeTerminated) return;
-		VAOfreeQ.push(VAO);
-		VBOfreeQ.push(VBO);
+
+		// Should not delete if created in another window
+
+		//VAOfreeQ.push(VAO);
+		//VBOfreeQ.push(VBO);
 	}
+
+	GLFWwindow* myWindow = null;
 }
 
 private auto VAOfreeQ = new shared GLQueue();
