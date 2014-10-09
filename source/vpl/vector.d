@@ -17,12 +17,18 @@ struct vector(size_t n, T = real) if (n > 0) {
 	static if (n >= 3) alias get!2 z;
 	static if (n >= 4) alias get!3 w;
 
+	private void isCompVectorImpl(size_t m, T2)(vector!(m, T2) vec) if (is(T2 : T)) {}
+	enum isCompVector(T) = is(typeof(isCompVectorImpl(T.init)));
+
 	private void construct(size_t i, Args...)(Args args) {
 		static if (args.length > 0) {
 			static assert(i < n, "Too many arguments");
 			static if (is(Args[0] : T)) {
 				array[i] = args[0];
 				construct!(i + 1)(args[1..$]);
+			} else static if (isCompVector!(Args[0])) {
+				array[i .. i + Args[0].array.length] = args[0].array[].to!(T[]);
+				construct!(i + Args[0].array.length)(args[1..$]);
 			} else static assert(false);
 		} else static assert(i == n, "Not enough arguments");
 	}
