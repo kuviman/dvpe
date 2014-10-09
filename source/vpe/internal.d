@@ -9,6 +9,7 @@ public {
 
 	import vpe.rawgl;
 	import vpe.shader.internal;
+	import vpe.draw.state;
 }
 
 GLFWwindow* window, coreWindow;

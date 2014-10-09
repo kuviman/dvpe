@@ -22,6 +22,7 @@ class Shader {
 
 private:
 	void render(RawPolygon polygon) {
+		renderState.apply(this);
 		glUseProgram(program);
 		polygon.render(program);
 	}
