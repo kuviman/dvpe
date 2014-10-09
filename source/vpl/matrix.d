@@ -113,4 +113,17 @@ struct matrix(size_t n, size_t m, T = real) {
 			return res;
 		}
 	}
+
+	auto opBinary(string op : "*", size_t k, T2)(matrix!(m, k, T2) other) {
+		alias typeof(T.init * T2.init) Tmul;
+		alias typeof(Tmul.init + Tmul.init) Tres;
+		matrix!(n, k, Tres) res;
+		foreach (i; RangeTuple!n)
+			foreach (j; RangeTuple!k) {
+				res[i, j] = 0; // Not zero in general! ( Tres.init? )
+				foreach (t; RangeTuple!m)
+					res[i, j] += this[i, t] * other[t, j];
+			}
+		return res;
+	}
 }
