@@ -22,3 +22,6 @@ void color(Color color) {
 void color(real r, real g, real b, real a = 1) {
 	renderState.color = Color(r, g, b, a);
 }
+
+void save() { saveRenderState(); }
+void load() { loadRenderState(); }
