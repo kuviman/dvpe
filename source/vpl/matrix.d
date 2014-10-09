@@ -35,6 +35,9 @@ struct matrix(size_t n, size_t m, T = real) {
 
 	auto opIndex(int i, int j) { return array[i][j]; }
 	void opIndexAssign(T val, int i, int j) { array[i][j] = val; }
+	void opIndexOpAssign(string op, T2)(T2 val, int i, int j) {
+		array[i][j].opOpAssign!op(val);
+	}
 
 	static if (n == m) {
 		private static auto createIdentity() {
