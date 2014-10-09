@@ -8,6 +8,7 @@ public {
 	import derelict.opengl3.gl3;
 
 	import vpe.rawgl;
+	import vpe.shader.internal;
 }
 
 GLFWwindow* window, coreWindow;
@@ -45,6 +46,12 @@ void initalizeVPE() {
 	glfwMakeContextCurrent(coreWindow);
 	log("Reloading DerelictGL3");
 	DerelictGL3.reload();
+
+	{
+		log("Initializing shaders");
+		logIndent(); scope(exit) logUnindent();
+		initShaders();
+	}
 }
 
 void terminateVPE() {

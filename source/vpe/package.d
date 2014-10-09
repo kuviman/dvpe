@@ -5,6 +5,7 @@ public {
 	import draw = vpe.draw;
 	import vpe.clock;
 	import vpe.color;
+	import vpe.shader;
 }
 
 import vpe.internal;
