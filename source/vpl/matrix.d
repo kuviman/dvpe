@@ -47,15 +47,23 @@ struct matrix(size_t n, size_t m, T = real) {
 		enum identity = createIdentity();
 	}
 
-	static if (n == m && n == 3) {
-		static auto createTranslation(T x, T y) { return matrix(1, 0, x, 0, 1, y, 0, 0, 1); }
-		static auto createScale(T x, T y) { return matrix(x, 0, 0, 0, y, 0, 0, 0, 1); }
-		static auto createScale(T k) { return matrix(k, 0, 0, 0, k, 0, 0, 0, 1); }
-		static if (isFloatingPoint!T) {
-			static auto createRotation(T angle) {
-				auto cs = cos(angle), sn = sin(angle);
-				return matrix(cs, -sn, 0, sn, cs, 0, 0, 0, 1);
-			}
+	static if (n == m && n == 3 && isFloatingPoint!T) {
+		static auto createRotation(T angle) {
+			auto cs = cos(angle), sn = sin(angle);
+			return matrix(cs, -sn, 0, sn, cs, 0, 0, 0, 1);
+		}
+	}
+
+	static if (n == m) {
+		static auto createTranslation(Args...)(Args args) if (Args.length == n - 1) {
+			matrix res;
+			foreach (i; RangeTuple!n)
+				foreach (j; RangeTuple!n) {
+					static if (i == j) res[i, j] = 1;
+					else static if (j == n - 1) res[i, j] = args[i];
+					else res[i, j] = 0;
+				}
+			return res;
 		}
 	}
 }
