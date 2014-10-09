@@ -69,4 +69,26 @@ struct matrix(size_t n, size_t m, T = real) {
 			return res;
 		}
 	}
+
+	static if (n == m && n == 4 && isFloatingPoint!T) {
+		static auto createRotation(vector!(3, T) u, T angle) {
+			auto cs = cos(angle), sn = sin(angle);
+			matrix res;
+			foreach (i; RangeTuple!16)
+				res.get!(fromIdx!i) = 0;
+			foreach (i; RangeTuple!3)
+				foreach (j; RangeTuple!3)
+					res[i, j] = u.array[i] * u.array[j] * (1 - cs);
+			foreach (i; RangeTuple!3)
+				res[i, i] += cs;
+			res[0, 1] -= u.z * sn;
+			res[0, 2] += u.y * sn;
+			res[1, 0] += u.z * sn;
+			res[1, 2] -= u.x * sn;
+			res[2, 0] -= u.y * sn;
+			res[2, 1] += u.x * sn;
+			res[3, 3] = 1;
+			return res;
+		}
+	}
 }
