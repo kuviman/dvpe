@@ -1,6 +1,7 @@
 module vpe.draw;
 
 public {
+	import vpe.draw.transform;
 }
 
 import vpe.internal;

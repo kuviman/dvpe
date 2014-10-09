@@ -20,6 +20,13 @@ class Shader {
 		setVec4(name, color.vec);
 	}
 
+	void setMat4(string name, mat4 mat) {
+		glUseProgram(program);
+		GLint pos = glGetUniformLocation(program, name.toStringz);
+		matrix!(4, 4, GLfloat) fmat = mat;
+		glUniformMatrix4fv(pos, 1, true, cast(GLfloat*)&fmat);
+	}
+
 private:
 	void render(RawPolygon polygon) {
 		renderState.apply(this);
