@@ -10,6 +10,16 @@ class Shader {
 	}
 	void renderQuad() { this.render(quadPoly); }
 
+	void setVec4(string name, vec4 vec) {
+		glUseProgram(program);
+		GLint pos = glGetUniformLocation(program, name.toStringz);
+		vector!(4, GLfloat) v = vec;
+		glUniform4fv(pos, 1, cast(GLfloat*)&v);
+	}
+	void setColor(string name, Color color) {
+		setVec4(name, color.vec);
+	}
+
 private:
 	void render(RawPolygon polygon) {
 		glUseProgram(program);
