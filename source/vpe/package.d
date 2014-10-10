@@ -6,6 +6,7 @@ public {
 	import vpe.clock;
 	import vpe.color;
 	import vpe.shader;
+	import vpe.input;
 }
 
 import vpe.internal;
