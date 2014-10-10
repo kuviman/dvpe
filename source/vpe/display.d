@@ -53,6 +53,15 @@ void setMode(int width, int height, bool fullscreen = defaultFullscreen) {
 	registerEvents(window);
 }
 
+vec2i size() {
+	vec2i res;
+	glfwGetWindowSize(window, &res.x(), &res.y());
+	return res;
+}
+int width() { return size.x; }
+int height() { return size.y; }
+real aspect() { return cast(real) width / height; }
+
 void flip() {
 	if (window is coreWindow)
 		setDefaultMode();
