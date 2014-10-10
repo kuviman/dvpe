@@ -8,8 +8,15 @@ void main() {
 		if (gotEvent!KeyDown(Key.Escape)) break;
 		if (gotEvent!KeyDown(Key.Space)) angle = 0;
 		foreach (T; EventTypes) {
-			foreach (e; getEvents!T)
+			foreach (e; getEvents!T) {
 				log("%s", e);
+				logIndent();
+				static if (is(T:MouseButtonDown) || is(T:MouseButtonUp)) {
+					auto pos = mouse.position;
+					log("mouse pos = %s %s", pos.x, pos.y);
+				}
+				logUnindent();
+			}
 		}
 		draw.clear(Color(0.8, 0.8, 1));
 
