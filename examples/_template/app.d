@@ -7,7 +7,8 @@ void main() {
 
 	vec2 pos = vec2(0, 0);
 
-	auto tex = new Texture(100, 100);
+	auto sz = vec2i(640, 480) / 4;
+	auto tex = new Texture(sz.x, sz.y);
 
 	mainloop: while (!gotEvent!Quit) {
 		if (gotEvent!KeyDown(Key.Escape)) break;
@@ -27,7 +28,7 @@ void main() {
 		foreach (e; getEvents!Scroll)
 			pos = pos + e.dv / 10;
 
-		draw.beginArea(160, 120, 320, 240);
+		draw.beginTexture(tex);
 
 		draw.clear(Color(0.8, 0.8, 1));
 
@@ -41,7 +42,13 @@ void main() {
 		tex.render();
 		draw.load();
 
-		draw.endArea();
+		draw.endTexture();
+
+		draw.save();
+		draw.translate(-1, -1);
+		draw.scale(2);
+		tex.render();
+		draw.load();
 
 		display.flip();
 

@@ -26,3 +26,6 @@ void color(real r, real g, real b, real a = 1) {
 
 void save() { saveRenderState(); }
 void load() { loadRenderState(); }
+
+void beginTexture(Texture texture) { beginTarget(texture); }
+void endTexture() { endTarget(); }
