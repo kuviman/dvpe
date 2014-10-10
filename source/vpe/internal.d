@@ -9,7 +9,7 @@ public {
 
 	import vpe.rawgl;
 	import vpe.shader.internal;
-	import vpe.draw.state;
+	import vpe.draw.internal;
 	import vpe.events.internal;
 }
 

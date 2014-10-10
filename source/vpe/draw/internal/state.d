@@ -1,4 +1,4 @@
-module vpe.draw.state;
+module vpe.draw.internal.state;
 
 import vpe.internal;
 

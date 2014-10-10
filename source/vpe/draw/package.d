@@ -2,6 +2,7 @@ module vpe.draw;
 
 public {
 	import vpe.draw.transform;
+	import vpe.draw.area;
 }
 
 import vpe.internal;

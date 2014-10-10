@@ -25,6 +25,8 @@ void main() {
 		foreach (e; getEvents!Scroll)
 			pos = pos + e.dv / 10;
 
+		draw.beginArea(160, 120, 320, 240);
+
 		draw.clear(Color(0.8, 0.8, 1));
 
 		draw.save();
@@ -35,6 +37,8 @@ void main() {
 		draw.translate(-0.5, -0.5);
 		draw.quad();
 		draw.load();
+
+		draw.endArea();
 
 		display.flip();
 
