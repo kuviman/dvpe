@@ -4,6 +4,9 @@ import vpl;
 void main() {
 	auto clock = new Clock();
 	real angle = 0;
+
+	vec2 pos = vec2(0, 0);
+
 	mainloop: while (!gotEvent!Quit) {
 		if (gotEvent!KeyDown(Key.Escape)) break;
 		if (gotEvent!KeyDown(Key.Space)) angle = 0;
@@ -12,15 +15,20 @@ void main() {
 				log("%s", e);
 				logIndent();
 				static if (is(T:MouseButtonDown) || is(T:MouseButtonUp)) {
-					auto pos = mouse.position;
-					log("mouse pos = %s %s", pos.x, pos.y);
+					auto mpos = mouse.position;
+					log("mouse pos = %s %s", mpos.x, mpos.y);
 				}
 				logUnindent();
 			}
 		}
+
+		foreach (e; getEvents!Scroll)
+			pos = pos + e.dv / 10;
+
 		draw.clear(Color(0.8, 0.8, 1));
 
 		draw.save();
+		draw.translate(pos.x, pos.y);
 		draw.color(clock.currentTime % 1, 0, 0);
 		draw.rotate(angle);
 		draw.scale(0.1);

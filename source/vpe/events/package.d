@@ -9,12 +9,17 @@ struct KeyRepeat { Key key; }
 struct MouseButtonDown { MouseButton button; }
 struct MouseButtonUp { MouseButton button; }
 
+struct Scroll {
+	real dx, dy;
+	vec2 dv() { return vec2(dx, dy); }
+}
+
 struct Quit {}
 
 alias TypeTuple!(
 	KeyDown, KeyUp, KeyRepeat,
 	MouseButtonDown, MouseButtonUp,
-	Quit)
+	Scroll, Quit)
 		EventTypes;
 
 void clearEvents() {

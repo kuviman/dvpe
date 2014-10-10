@@ -7,6 +7,7 @@ template eventQueue(T) { T[] eventQueue; };
 void registerEvents(GLFWwindow* window) {
 	glfwSetKeyCallback(window, &cbKey);
 	glfwSetMouseButtonCallback(window, &cbMouseButton);
+	glfwSetScrollCallback(window, &cbScroll);
 }
 
 nothrow extern(C) void cbKey(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -26,5 +27,11 @@ nothrow extern(C) void cbMouseButton(GLFWwindow* window, int button, int action,
 			eventQueue!MouseButtonDown ~= MouseButtonDown(cast(MouseButton)button);
 		else if (action == GLFW_RELEASE)
 			eventQueue!MouseButtonUp ~= MouseButtonUp(cast(MouseButton)button);
+	} catch (Exception) {}
+}
+
+nothrow extern(C) void cbScroll(GLFWwindow* window, double dx, double dy) {
+	try {
+		eventQueue!Scroll ~= Scroll(dx, -dy);
 	} catch (Exception) {}
 }
