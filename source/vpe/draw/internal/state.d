@@ -5,10 +5,12 @@ import vpe.internal;
 struct RenderState {
 	Color color = Color(1, 1, 1, 1);
 	mat4 modelMatrix = mat4.identity;
+	mat4 projectionMatrix = mat4.identity;
 
 	void apply(Shader shader) {
 		shader.setColor("color", color);
 		shader.setMat4("modelMatrix", modelMatrix);
+		shader.setMat4("projectionMatrix", projectionMatrix);
 	}
 }
 

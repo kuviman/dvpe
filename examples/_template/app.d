@@ -30,6 +30,8 @@ void main() {
 
 		draw.beginTexture(tex);
 
+		draw.view(1);
+
 		draw.clear(Color(0.8, 0.8, 1));
 
 		draw.save();

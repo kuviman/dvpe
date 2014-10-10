@@ -2,21 +2,16 @@ module vpe.draw.area;
 
 import vpe.internal;
 
-private {
+package {
 	vec2i[] renderAreaPosStack, renderAreaSizeStack;
 	vec2i renderAreaPos() {
 		if (renderAreaPosStack.length == 0)
 			return vec2i(0, 0);
 		return renderAreaPosStack[$ - 1];
 	}
-	vec2i renderAreaSize() {
-		if (renderAreaSizeStack.length == 0)
-			return display.size;
-		return renderAreaSizeStack[$ - 1];
-	}
 	void applyArea() {
 		alias renderAreaPos pos;
-		alias renderAreaSize size;
+		alias draw.size size;
 		glEnable(GL_SCISSOR_TEST);
 		glViewport(pos.x, pos.y, size.x, size.y);
 		glScissor(pos.x, pos.y, size.x, size.y);

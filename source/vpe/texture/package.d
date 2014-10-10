@@ -15,6 +15,8 @@ class Texture {
 	auto width() { return _width; }
 	auto height() { return _height; }
 
+	auto size() { return vec2i(width, height); }
+
 	void render() {
 		alias textureShader shader;
 		shader.setTexture("texture", this);

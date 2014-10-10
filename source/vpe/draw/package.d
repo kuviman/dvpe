@@ -29,3 +29,16 @@ void load() { loadRenderState(); }
 
 void beginTexture(Texture texture) { beginTarget(texture); }
 void endTexture() { endTarget(); }
+
+vec2i size() {
+	if (renderAreaSizeStack.length == 0) {
+		if (currentTarget is null)
+			return display.size;
+		return currentTarget.size;
+	}
+	return renderAreaSizeStack[$ - 1];
+}
+
+auto width() { return size.x; }
+auto height() { return size.y; }
+auto aspect() { return cast(real) width / height; }
