@@ -112,6 +112,9 @@ struct matrix(size_t n, size_t m, T = real) {
 			res[3, 3] = 1;
 			return res;
 		}
+		static auto createRotation(T ux, T uy, T uz, T angle) {
+			return createRotation(vector!(3, T)(ux, uy, uz), angle);
+		}
 	}
 
 	auto opBinary(string op : "*", size_t k, T2)(matrix!(m, k, T2) other) {
