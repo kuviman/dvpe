@@ -11,8 +11,8 @@ public {
 
 synchronized class GLQueue {
 	void push(GLuint val) {
-		t = (t + 1) % buf.length;
 		buf[t] = val;
+		t = (t + 1) % buf.length;
 	}
 	bool pop(ref GLuint val) {
 		if (h == t) return false;
@@ -21,7 +21,7 @@ synchronized class GLQueue {
 		return true;
 	}
 private:
-	size_t h, t;
+	size_t h = 0, t = 0;
 	GLuint buf[10500];
 }
 

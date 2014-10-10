@@ -72,4 +72,5 @@ void flip() {
 		eventQueue!Quit ~= Quit();
 		glfwSetWindowShouldClose(window, GL_FALSE);
 	}
+	freeResources();
 }
