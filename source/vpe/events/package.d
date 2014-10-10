@@ -9,9 +9,13 @@ struct KeyRepeat { Key key; }
 struct MouseButtonDown { MouseButton button; }
 struct MouseButtonUp { MouseButton button; }
 
+struct Quit {}
+
 alias TypeTuple!(
 	KeyDown, KeyUp, KeyRepeat,
-	MouseButtonUp, MouseButtonDown) EventTypes;
+	MouseButtonUp, MouseButtonDown,
+	Quit)
+		EventTypes;
 
 void clearEvents() {
 	foreach (T; EventTypes)

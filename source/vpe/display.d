@@ -59,4 +59,8 @@ void flip() {
 	clearEvents();
 	glfwPollEvents();
 	glfwSwapBuffers(window);
+	if (glfwWindowShouldClose(window)) {
+		eventQueue!Quit ~= Quit();
+		glfwSetWindowShouldClose(window, GL_FALSE);
+	}
 }
