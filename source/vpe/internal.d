@@ -55,6 +55,7 @@ void initalizeVPE() {
 		logIndent(); scope(exit) logUnindent();
 		initShaders();
 	}
+	initRender();
 }
 
 void terminateVPE() {

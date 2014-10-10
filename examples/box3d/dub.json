@@ -1,0 +1,10 @@
+{
+	"name": "VPE Box3D Example",
+	"targetPath": "bin",
+	"targetType": "executable",
+	"dependencies": {
+		"vpe": "~master"
+	},
+	"sourcePaths": ["."],
+	"stringImportPaths": ["."]
+}

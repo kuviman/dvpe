@@ -9,7 +9,7 @@ import vpe.internal;
 
 void clear(real r, real g, real b, real a = 1) {
 	glClearColor(r, g, b, a);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 void clear(Color color) { clear(color.r, color.g, color.b, color.a); }
 
@@ -42,3 +42,11 @@ vec2i size() {
 auto width() { return size.x; }
 auto height() { return size.y; }
 auto aspect() { return cast(real) width / height; }
+
+private bool _depthTesting = false;
+bool depthTesting() { return _depthTesting; }
+void depthTesting(bool value) {
+	_depthTesting = value;
+	if (value) glEnable(GL_DEPTH_TEST);
+	else glDisable(GL_DEPTH_TEST);
+}

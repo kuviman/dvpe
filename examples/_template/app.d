@@ -2,17 +2,9 @@ import vpe;
 import vpl;
 
 void main() {
-	auto clock = new Clock();
-	real angle = 0;
-
-	vec2 pos = vec2(0, 0);
-
-	auto sz = vec2i(640, 480) / 4;
-	auto tex = new Texture(sz.x, sz.y);
-
+	display.title = "VPE Example Template";
 	mainloop: while (!gotEvent!Quit) {
 		if (gotEvent!KeyDown(Key.Escape)) break;
-		if (gotEvent!KeyDown(Key.Space)) angle = 0;
 		foreach (T; EventTypes) {
 			foreach (e; getEvents!T) {
 				log("%s", e);
@@ -24,39 +16,7 @@ void main() {
 				logUnindent();
 			}
 		}
-
-		foreach (e; getEvents!Scroll)
-			pos = pos + e.dv / 10;
-
-		draw.beginTexture(tex);
-
-		draw.view(1);
-
-		draw.clear(Color(0.8, 0.8, 1));
-
-		draw.save();
-		draw.translate(pos.x, pos.y);
-		draw.color(clock.currentTime % 1, 0, 0);
-		draw.rotate(angle);
-		draw.scale(0.1);
-		draw.translate(-0.5, -0.5);
-		//draw.quad();
-		tex.render();
-		draw.load();
-
-		draw.endTexture();
-
-		draw.save();
-		draw.translate(-1, -1);
-		draw.scale(2);
-		tex.render();
-		draw.load();
-
+		draw.clear(0.8, 0.8, 1);
 		display.flip();
-
-		int sign = 0;
-		if (Key.Left.pressed) sign++;
-		if (Key.Right.pressed) sign--;
-		angle += clock.tick * sign;
 	}
 }
