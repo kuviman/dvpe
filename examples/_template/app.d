@@ -30,6 +30,9 @@ void main() {
 
 		display.flip();
 
-		angle += clock.tick();
+		int sign = 0;
+		if (Key.Left.pressed) sign++;
+		if (Key.Right.pressed) sign--;
+		angle += clock.tick * sign;
 	}
 }
