@@ -13,7 +13,7 @@ struct Quit {}
 
 alias TypeTuple!(
 	KeyDown, KeyUp, KeyRepeat,
-	MouseButtonUp, MouseButtonDown,
+	MouseButtonDown, MouseButtonUp,
 	Quit)
 		EventTypes;
 
