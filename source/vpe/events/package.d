@@ -6,7 +6,12 @@ struct KeyDown { Key key; }
 struct KeyUp { Key key; }
 struct KeyRepeat { Key key; }
 
-alias TypeTuple!(KeyDown, KeyUp, KeyRepeat) EventTypes;
+struct MouseButtonDown { MouseButton button; }
+struct MouseButtonUp { MouseButton button; }
+
+alias TypeTuple!(
+	KeyDown, KeyUp, KeyRepeat,
+	MouseButtonUp, MouseButtonDown) EventTypes;
 
 void clearEvents() {
 	foreach (T; EventTypes)

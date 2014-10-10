@@ -9,6 +9,10 @@ void main() {
 			if (e.key == Key.Escape) break mainloop;
 			if (e.key == Key.Space) angle = 0;
 		}
+		foreach (T; EventTypes) {
+			foreach (e; getEvents!T)
+				log("%s", e);
+		}
 		draw.clear(Color(0.8, 0.8, 1));
 
 		draw.save();
