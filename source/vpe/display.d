@@ -48,11 +48,15 @@ void setMode(int width, int height, bool fullscreen = defaultFullscreen) {
 	enforce(window, "Could not create window");
 	log("Switching OpenGL context to new window");
 	glfwMakeContextCurrent(window);
+
+	log("Registering events for new window");
+	registerEvents(window);
 }
 
 void flip() {
 	if (window is coreWindow)
 		setDefaultMode();
+	clearEvents();
 	glfwPollEvents();
 	glfwSwapBuffers(window);
 }

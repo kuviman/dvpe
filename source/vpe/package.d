@@ -7,6 +7,7 @@ public {
 	import vpe.color;
 	import vpe.shader;
 	import vpe.input;
+	import vpe.events;
 }
 
 import vpe.internal;
