@@ -25,3 +25,13 @@ void clearEvents() {
 auto getEvents(T)() {
 	return eventQueue!T[];
 }
+
+bool gotEvent(T, Args...)(Args args) {
+	static if (Args.length == 0) { return eventQueue!T.length > 0; }
+	else {
+		foreach (e; eventQueue!T)
+			if (e == T(args))
+				return true;
+		return false;
+	}
+}

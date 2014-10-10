@@ -4,11 +4,9 @@ import vpl;
 void main() {
 	auto clock = new Clock();
 	real angle = 0;
-	mainloop: while (true) {
-		foreach (e; getEvents!KeyDown) {
-			if (e.key == Key.Escape) break mainloop;
-			if (e.key == Key.Space) angle = 0;
-		}
+	mainloop: while (!gotEvent!Quit) {
+		if (gotEvent!KeyDown(Key.Escape)) break;
+		if (gotEvent!KeyDown(Key.Space)) angle = 0;
 		foreach (T; EventTypes) {
 			foreach (e; getEvents!T)
 				log("%s", e);
