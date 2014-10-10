@@ -7,6 +7,8 @@ void main() {
 
 	vec2 pos = vec2(0, 0);
 
+	auto tex = new Texture(100, 100);
+
 	mainloop: while (!gotEvent!Quit) {
 		if (gotEvent!KeyDown(Key.Escape)) break;
 		if (gotEvent!KeyDown(Key.Space)) angle = 0;
@@ -35,7 +37,8 @@ void main() {
 		draw.rotate(angle);
 		draw.scale(0.1);
 		draw.translate(-0.5, -0.5);
-		draw.quad();
+		//draw.quad();
+		tex.render();
 		draw.load();
 
 		draw.endArea();

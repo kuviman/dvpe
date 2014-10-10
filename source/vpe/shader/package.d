@@ -27,11 +27,22 @@ class Shader {
 		glUniformMatrix4fv(pos, 1, true, cast(GLfloat*)&fmat);
 	}
 
+	void setTexture(string name, Texture texture) {
+		glUseProgram(program);
+		GLint loc = glGetUniformLocation(program, name.toStringz);
+		int id = numTex++;
+		glActiveTexture(GL_TEXTURE0 + id);
+		glBindTexture(GL_TEXTURE_2D, texture.getRawTexture);
+		glUniform1i(loc, id);
+	}
+
 private:
+	int numTex = 0;
 	void render(RawPolygon polygon) {
 		renderState.apply(this);
 		glUseProgram(program);
 		polygon.render(program);
+		numTex = 0;
 	}
 	RawProgram program;
 }

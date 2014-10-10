@@ -11,6 +11,7 @@ public {
 	import vpe.shader.internal;
 	import vpe.draw.internal;
 	import vpe.events.internal;
+	import vpe.texture.internal;
 }
 
 GLFWwindow* window, coreWindow;
