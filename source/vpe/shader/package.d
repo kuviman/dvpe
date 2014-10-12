@@ -9,6 +9,7 @@ class Shader {
 			new RawShader(GL_FRAGMENT_SHADER, code));
 	}
 	void renderQuad() { this.render(quadPoly); }
+	alias renderQuad render;
 
 	void setVec4(string name, vec4 vec) {
 		glUseProgram(program);

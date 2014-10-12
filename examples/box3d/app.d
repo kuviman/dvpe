@@ -89,7 +89,7 @@ void main() {
 		draw.translate(-1, -1);
 		draw.scale(2);
 		draw.color(0, 0, 0, 1);
-		vig.renderQuad();
+		vig.render();
 		draw.load();
 
 		draw.scale(0.4);
