@@ -5,7 +5,7 @@ import vpe.internal;
 class RawShader {
 	this(GLenum type, string text) {
 		id = glCreateShader(type);
-		log("Creating shader (id = %s)", id);
+		//log("Creating shader (id = %s)", id);
 		scope(failure) glDeleteShader(id);
 		GLint srclen = to!GLint(text.length);
 		auto ptr = text.ptr;
@@ -29,11 +29,11 @@ class RawShader {
 	GLuint id;
 }
 
-private auto freeQ = new shared GLQueue();
+private auto freeQ = new shared SynQueue!GLuint();
 void freeShaders() {
 	GLuint id;
 	while (freeQ.pop(id)) {
-		log("Deleting shader (id = %s)", id);
+		//log("Deleting shader (id = %s)", id);
 		glDeleteShader(id);
 	}
 }

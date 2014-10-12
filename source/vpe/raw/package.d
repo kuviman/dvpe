@@ -5,24 +5,25 @@ public {
 	import vpe.raw.program;
 	import vpe.raw.polygon;
 	import vpe.raw.texture;
+	import vpe.raw.ttf;
 
 	import vpe.internal;
 }
 
-synchronized class GLQueue {
-	void push(GLuint val) {
-		buf[t] = val;
+synchronized class SynQueue(T) {
+	void push(T val) shared {
+		buf[t] = cast(shared T) val;
 		t = (t + 1) % buf.length;
 	}
-	bool pop(ref GLuint val) {
+	bool pop(ref T val) shared {
 		if (h == t) return false;
-		val = buf[h];
+		val = cast(T) buf[h];
 		h = (h + 1) % buf.length;
 		return true;
 	}
 private:
 	size_t h = 0, t = 0;
-	GLuint buf[10500];
+	T buf[10500];
 }
 
 void freeResources() {
@@ -30,4 +31,5 @@ void freeResources() {
 	freePrograms();
 	freeTextures();
 	freePolygons();
+	freeTTFs();
 }

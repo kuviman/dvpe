@@ -20,10 +20,10 @@ class RawPolygon {
 
 	void init() {
 		glGenVertexArrays(1, &VAO);
-		log("Creating VAO (id = %s)", VAO);
+		//log("Creating VAO (id = %s)", VAO);
 		glBindVertexArray(VAO);
 		glGenBuffers(1, &VBO);
-		log("Creating VBO (id = %s)", VBO);
+		//log("Creating VBO (id = %s)", VBO);
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
 		GLfloat[] mesh = new GLfloat[points.length * 3];
 		foreach(i, p; points) {
@@ -63,16 +63,16 @@ class RawPolygon {
 	GLFWwindow* myWindow = null;
 }
 
-private auto VAOfreeQ = new shared GLQueue();
-private auto VBOfreeQ = new shared GLQueue();
+private auto VAOfreeQ = new shared SynQueue!GLuint();
+private auto VBOfreeQ = new shared SynQueue!GLuint();
 void freePolygons() {
 	GLuint id;
 	while (VAOfreeQ.pop(id)) {
-		log("Deleting VAO (id = %s)", id);
+		//log("Deleting VAO (id = %s)", id);
 		glDeleteVertexArrays(1, &id);
 	}
 	while (VBOfreeQ.pop(id)) {
-		log("Deleting VBO (id = %s)", id);
+		//log("Deleting VBO (id = %s)", id);
 		glDeleteBuffers(1, &id);
 	}
 }

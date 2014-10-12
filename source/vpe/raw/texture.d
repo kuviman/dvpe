@@ -5,7 +5,7 @@ import vpe.internal;
 class RawTexture {
 	this() {
 		glGenTextures(1, &id);
-		log("Creating texture (id = %s)", id);
+		//log("Creating texture (id = %s)", id);
 	}
 	~this() {
 		if (vpeTerminated) return;
@@ -15,11 +15,11 @@ class RawTexture {
 	GLuint id;
 }
 
-private auto freeQ = new shared GLQueue();
+private auto freeQ = new shared SynQueue!GLuint();
 void freeTextures() {
 	GLuint id;
 	while (freeQ.pop(id)) {
-		log("Deleting texture (id = %s)", id);
+		//log("Deleting texture (id = %s)", id);
 		glDeleteTextures(1, &id);
 	}
 }

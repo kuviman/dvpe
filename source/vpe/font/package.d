@@ -2,6 +2,7 @@ module vpe.font;
 
 public {
 	import vpe.font.texture;
+	import vpe.font.ttf;
 }
 
 import vpe.internal;

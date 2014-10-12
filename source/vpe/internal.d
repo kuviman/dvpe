@@ -8,6 +8,7 @@ public {
 	import derelict.opengl3.gl3;
 	import derelict.sdl2.image;
 	import derelict.sdl2.sdl;
+	import derelict.sdl2.ttf;
 
 	import vpe.raw;
 	import vpe.shader.internal;
@@ -31,6 +32,8 @@ void initalizeVPE() {
 	DerelictSDL2.load();
 	log("Loading DerelictSDL2Image");
 	DerelictSDL2Image.load();
+	log("Loading DerelictSDL2ttf");
+	DerelictSDL2ttf.load();
 
 	log("Compiled with GLFW version %s.%s.%s", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
 	int major, minor, revision;
@@ -48,6 +51,9 @@ void initalizeVPE() {
 	log("Initializing SDL_image");
 	auto flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
 	enforce(IMG_Init(flags) == flags, "Could not initialize SDL_image");
+
+	log("Initializing SDL_ttf");
+	enforce(TTF_Init() == 0, "Could not initialize SDL_ttf");
 
 	log("Creating core window");
 	version (OSX) {

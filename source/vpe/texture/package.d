@@ -3,7 +3,7 @@ module vpe.texture;
 import vpe.internal;
 
 class Texture {
-	private this() {
+	package this() {
 		tex = new RawTexture();
 		glBindTexture(GL_TEXTURE_2D, tex);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -56,8 +56,8 @@ class Texture {
 		return tex;
 	}
 
-private:
-	package RawTexture tex;
+package:
+	RawTexture tex;
 	int _width, _height;
 
 	void setSDL_Surface(SDL_Surface* surface) {

@@ -6,7 +6,7 @@ class RawProgram {
 	this(RawShader[] shaders...) {
 		this.shaders = shaders.dup;
 		id = glCreateProgram();
-		log("Creating program (id = %s)", id);
+		//log("Creating program (id = %s)", id);
 		scope(failure) glDeleteProgram(id);
 		foreach (shader; shaders)
 			glAttachShader(id, shader);
@@ -30,11 +30,11 @@ class RawProgram {
 	GLuint id;
 }
 
-private auto freeQ = new shared GLQueue();
+private auto freeQ = new shared SynQueue!GLuint();
 void freePrograms() {
 	GLuint id;
 	while (freeQ.pop(id)) {
-		log("Deleting program (id = %s)", id);
+		//log("Deleting program (id = %s)", id);
 		glDeleteProgram(id);
 	}
 }
