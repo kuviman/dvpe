@@ -9,7 +9,7 @@ public {
 	import derelict.sdl2.image;
 	import derelict.sdl2.sdl;
 
-	import vpe.rawgl;
+	import vpe.raw;
 	import vpe.shader.internal;
 	import vpe.draw.internal;
 	import vpe.events.internal;

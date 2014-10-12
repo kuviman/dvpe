@@ -1,6 +1,6 @@
-module vpe.rawgl.texture;
+module vpe.raw.texture;
 
-import vpe.rawgl;
+import vpe.internal;
 
 class RawTexture {
 	this() {

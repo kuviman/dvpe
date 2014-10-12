@@ -1,6 +1,6 @@
-module vpe.rawgl.polygon;
+module vpe.raw.polygon;
 
-import vpe.rawgl;
+import vpe.internal;
 
 class RawPolygon {
 	GLuint VAO, VBO;

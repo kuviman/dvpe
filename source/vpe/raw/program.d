@@ -1,6 +1,6 @@
-module vpe.rawgl.program;
+module vpe.raw.program;
 
-import vpe.rawgl;
+import vpe.internal;
 
 class RawProgram {
 	this(RawShader[] shaders...) {

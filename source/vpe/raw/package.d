@@ -1,10 +1,10 @@
-module vpe.rawgl;
+module vpe.raw;
 
 public {
-	import vpe.rawgl.shader;
-	import vpe.rawgl.program;
-	import vpe.rawgl.polygon;
-	import vpe.rawgl.texture;
+	import vpe.raw.shader;
+	import vpe.raw.program;
+	import vpe.raw.polygon;
+	import vpe.raw.texture;
 
 	import vpe.internal;
 }

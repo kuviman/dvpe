@@ -1,6 +1,6 @@
-module vpe.rawgl.shader;
+module vpe.raw.shader;
 
-import vpe.rawgl;
+import vpe.internal;
 
 class RawShader {
 	this(GLenum type, string text) {
