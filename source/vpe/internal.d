@@ -6,6 +6,8 @@ public {
 
 	import derelict.glfw3.glfw3;
 	import derelict.opengl3.gl3;
+	import derelict.sdl2.image;
+	import derelict.sdl2.sdl;
 
 	import vpe.rawgl;
 	import vpe.shader.internal;
@@ -25,6 +27,10 @@ void initalizeVPE() {
 	DerelictGLFW3.load();
 	log("Loading DerelictGL3");
 	DerelictGL3.load();
+	log("Loading DerelictSDL2");
+	DerelictSDL2.load();
+	log("Loading DerelictSDL2Image");
+	DerelictSDL2Image.load();
 
 	log("Compiled with GLFW version %s.%s.%s", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
 	int major, minor, revision;
@@ -34,6 +40,14 @@ void initalizeVPE() {
 
 	log("Initializing GLFW");
 	enforce(glfwInit() == GL_TRUE, "Could not initialize GLFW");
+
+	// ??? Initializing SDL breaks trackpad
+	//log("Initializing SDL");
+	//enforce(SDL_Init(SDL_INIT_EVERYTHING) == 0, "Could not initialize SDL");
+
+	log("Initializing SDL_image");
+	auto flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
+	enforce(IMG_Init(flags) == flags, "Could not initialize SDL_image");
 
 	log("Creating core window");
 	version (OSX) {
