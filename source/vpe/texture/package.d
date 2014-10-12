@@ -22,6 +22,16 @@ class Texture {
 
 	void render() {
 		alias textureShader shader;
+		shader.setMat3("textureMatrix", mat3.identity);
+		shader.setTexture("texture", this);
+		shader.renderQuad();
+	}
+
+	void renderSub(vec2 pos, vec2 size) { renderSub(pos.x, pos.y, size.x, size.y); }
+	void renderSub(real x, real y, real sizex, real sizey) {
+		alias textureShader shader;
+		auto mat = mat3.createTranslation(x, y) * mat3.createScale(sizex, sizey);
+		shader.setMat3("textureMatrix", mat);
 		shader.setTexture("texture", this);
 		shader.renderQuad();
 	}

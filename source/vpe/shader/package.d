@@ -28,6 +28,13 @@ class Shader {
 		glUniformMatrix4fv(pos, 1, true, cast(GLfloat*)&fmat);
 	}
 
+	void setMat3(string name, mat3 mat) {
+		glUseProgram(program);
+		GLint pos = glGetUniformLocation(program, name.toStringz);
+		matrix!(3, 3, GLfloat) fmat = mat;
+		glUniformMatrix3fv(pos, 1, true, cast(GLfloat*)&fmat);
+	}
+
 	void setTexture(string name, Texture texture) {
 		glUseProgram(program);
 		GLint loc = glGetUniformLocation(program, name.toStringz);
