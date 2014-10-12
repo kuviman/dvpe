@@ -34,7 +34,7 @@ void renderBox() {
 void main() {
 	display.title = "VPE Box3D Example";
 	display.setMode(400, 400, false);
-	boxTex = Texture.load("../box.jpg");
+	boxTex = Texture.loadFromMem(importBinary!"box.jpg");
 	Shader vig = new Shader(import("vignetting.glsl"));
 	auto mat = mat4.identity;
 	mainloop: while (!gotEvent!Quit) {

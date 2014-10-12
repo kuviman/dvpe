@@ -36,6 +36,16 @@ class Texture {
 		return tex;
 	}
 
+	static Texture loadFromMem(const byte[] data) {
+		auto tex = new Texture();
+		auto image = IMG_Load_RW(SDL_RWFromConstMem(data.ptr, cast(int)data.length), 1);
+		if (!image)
+			throw new Exception("Could not load texture");
+		tex.setSDL_Surface(image);
+		SDL_FreeSurface(image);
+		return tex;
+	}
+
 private:
 	package RawTexture tex;
 	int _width, _height;
