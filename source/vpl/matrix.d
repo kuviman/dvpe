@@ -73,7 +73,7 @@ struct matrix(size_t n, size_t m, T = real) {
 			foreach (i; RangeTuple!n)
 				foreach (j; RangeTuple!n) {
 					static if (i == j) {
-						static if (i == 3) res[i, j] = 1;
+						static if (i == n - 1) res[i, j] = 1;
 						else res[i, j] = args[i];
 					} else res[i, j] = 0;
 				}
@@ -84,7 +84,7 @@ struct matrix(size_t n, size_t m, T = real) {
 			foreach (i; RangeTuple!n)
 				foreach (j; RangeTuple!n) {
 					static if (i == j) {
-						static if (i == 3) res[i, j] = 1;
+						static if (i == n - 1) res[i, j] = 1;
 						else res[i, j] = k;
 					} else res[i, j] = 0;
 				}
