@@ -5,7 +5,7 @@ public {
 }
 
 import std.exception : enforce;
-import std.algorithm : min, max;
+import std.algorithm : min, max, swap;
 import std.conv : to;
 import std.traits : CommonType, TypeTuple, isFloatingPoint;
 import std.string : toStringz;
