@@ -4,7 +4,7 @@ import vpe.rawgl;
 
 class RawProgram {
 	this(RawShader[] shaders...) {
-		this.shaders = shaders;
+		this.shaders = shaders.dup;
 		id = glCreateProgram();
 		log("Creating program (id = %s)", id);
 		scope(failure) glDeleteProgram(id);
