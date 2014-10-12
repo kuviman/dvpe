@@ -9,6 +9,7 @@ public {
 	import vpe.input;
 	import vpe.events;
 	import vpe.texture;
+	import vpe.font;
 }
 
 import vpe.internal;

@@ -32,6 +32,7 @@ void renderBox() {
 }
 
 void main() {
+	auto font = new TextureFont(Texture.loadFromMem(importBinary!"font.png"));
 	display.title = "VPE Box3D Example";
 	display.setMode(400, 400, false);
 	boxTex = Texture.loadFromMem(importBinary!"box.jpg");
@@ -66,6 +67,14 @@ void main() {
 		renderBox();
 		draw.depthTesting = false;
 
+		draw.load();
+
+		draw.save();
+		draw.view(draw.height);
+		auto pos = vec2(10, 10);
+		draw.translate(-draw.width / 2 + pos.x, -draw.height / 2 + pos.y);
+		draw.scale(16);
+		font.render(display.title);
 		draw.load();
 
 		display.flip();
