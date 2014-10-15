@@ -61,6 +61,11 @@ void main() {
 		foreach (f; figures)
 			f.render();
 
+		draw.color(Color.Black);
+		draw.translate(10, 10);
+		draw.scale(20);
+		draw.text("NumFugures: %s; FPS: %s".format(figures.length, clock.FPS.to!int));
+
 		draw.load();
 
 		display.flip();
