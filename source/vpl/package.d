@@ -13,6 +13,9 @@ auto clamp(T)(T val, T minVal, T maxVal) {
 	return val;
 }
 
+auto random(T : bool)() {
+	return randomInc!int(0, 1) == 1;
+}
 auto random(T)(T lf, T rg) {
 	return uniform(lf, rg);
 }
