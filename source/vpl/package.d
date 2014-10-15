@@ -7,6 +7,12 @@ public {
 	import vpl.matrix;
 }
 
+auto sign(T)(T val) {
+	if (val < 0) return -1;
+	if (val > 0) return +1;
+	return 0;
+}
+
 auto clamp(T)(T val, T minVal, T maxVal) {
 	if (val < minVal) return minVal;
 	if (val > maxVal) return maxVal;
