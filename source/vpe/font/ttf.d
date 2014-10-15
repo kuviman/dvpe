@@ -11,8 +11,9 @@ class TTFFont : Font {
 		return cast(real) w / h;
 	}
 	void render(string text) {
-		SDL_Surface* surface = TTF_RenderText_Solid(rfont, text.toStringz, SDL_Color(0xff, 0xff, 0xff));
+		SDL_Surface* surface = TTF_RenderText_Blended(rfont, text.toStringz, SDL_Color(0xff, 0xff, 0xff));
 		auto tex = textureFromSurface(surface);
+		tex.smooth = true;
 		draw.save();
 		draw.scale(cast(real) tex.width / tex.height, 1);
 		tex.render();
