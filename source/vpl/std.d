@@ -12,3 +12,4 @@ import std.string : toStringz;
 import std.array : array, split;
 import std.typecons : wrap;
 import std.random : uniform, randomShuffle;
+import std.string : format;
