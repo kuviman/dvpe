@@ -1,0 +1,9 @@
+{
+	"name": "VPE Pong Example",
+	"targetPath": "bin",
+	"targetType": "executable",
+	"dependencies": {
+		"vpe": "~master"
+	},
+	"sourcePaths": ["."]
+}
