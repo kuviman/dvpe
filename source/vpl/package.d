@@ -7,6 +7,12 @@ public {
 	import vpl.matrix;
 }
 
+auto clamp(T)(T val, T minVal, T maxVal) {
+	if (val < minVal) return minVal;
+	if (val > maxVal) return maxVal;
+	return val;
+}
+
 auto random(T)(T lf, T rg) {
 	return uniform(lf, rg);
 }
