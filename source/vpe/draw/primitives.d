@@ -21,3 +21,11 @@ void line(vec2 p1, vec2 p2, real width) {
 	draw.quad();
 	draw.load();
 }
+
+void rect(real x1, real y1, real x2, real y2) {
+	draw.save();
+	draw.translate(x1, y1);
+	draw.scale(x2 - x1, y2 - y1);
+	draw.quad();
+	draw.load();
+}
