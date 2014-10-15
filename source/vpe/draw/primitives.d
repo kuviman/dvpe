@@ -45,3 +45,14 @@ void frame(real x1, real y1, real x2, real y2, real width) {
 void frame(vec2 p1, vec2 p2, real width) {
 	frame(p1.x, p1.y, p2.x, p2.y, width);
 }
+
+void circle(real x, real y, real radius) {
+	draw.save();
+	draw.translate(x - radius, y - radius);
+	draw.scale(2 * radius);
+	circleShader.render();
+	draw.load();
+}
+void circle(vec2 pos, real radius) {
+	circle(pos.x, pos.y, radius);
+}
