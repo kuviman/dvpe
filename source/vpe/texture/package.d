@@ -5,9 +5,7 @@ import vpe.internal;
 class Texture {
 	package this() {
 		tex = new RawTexture();
-		glBindTexture(GL_TEXTURE_2D, tex);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		this.smooth = false;
 	}
 	this(int width, int height) {
 		this();
@@ -19,6 +17,13 @@ class Texture {
 	auto height() { return _height; }
 
 	auto size() { return vec2i(width, height); }
+
+	void smooth(bool value) {
+		auto filter = value ? GL_LINEAR : GL_NEAREST;
+		glBindTexture(GL_TEXTURE_2D, tex);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
+	}
 
 	void render() {
 		alias textureShader shader;
