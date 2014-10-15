@@ -3,6 +3,7 @@ module vpe.draw;
 public {
 	import vpe.draw.transform;
 	import vpe.draw.area;
+	import vpe.draw.primitives;
 }
 
 import vpe.internal;
@@ -12,10 +13,6 @@ void clear(real r, real g, real b, real a = 1) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 void clear(Color color) { clear(color.r, color.g, color.b, color.a); }
-
-void quad() {
-	colorShader.renderQuad();
-}
 
 void color(Color color) {
 	renderState.color = color;

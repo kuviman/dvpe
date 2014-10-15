@@ -13,3 +13,10 @@ void initShaders() {
 	colorShader = new Shader(import("shader/fragment/color.glsl"));
 	textureShader = new Shader(import("shader/fragment/texture.glsl"));
 }
+
+void renderPoly(Shader shader, RawPolygon polygon) {
+	glUseProgram(shader.program);
+	renderState.apply(shader);
+	polygon.render(shader.program);
+	shader.numTex = 0;
+}

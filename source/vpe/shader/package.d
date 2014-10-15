@@ -8,7 +8,7 @@ class Shader {
 		program = new RawProgram(basicVertexShader,
 			new RawShader(GL_FRAGMENT_SHADER, code));
 	}
-	void renderQuad() { this.render(quadPoly); }
+	void renderQuad() { renderPoly(this, quadPoly); }
 	alias renderQuad render;
 
 	void setVec4(string name, vec4 vec) {
@@ -44,13 +44,7 @@ class Shader {
 		glUniform1i(loc, id);
 	}
 
-private:
+package:
 	int numTex = 0;
-	void render(RawPolygon polygon) {
-		renderState.apply(this);
-		glUseProgram(program);
-		polygon.render(program);
-		numTex = 0;
-	}
 	RawProgram program;
 }

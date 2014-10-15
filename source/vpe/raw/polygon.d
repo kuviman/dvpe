@@ -45,6 +45,7 @@ class RawPolygon {
 			init();
 			myWindow = window;
 		}
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
 		glBindVertexArray(VAO);
 		GLint posLoc = glGetAttribLocation(program, "position");
 		initAttr(posLoc);
@@ -58,6 +59,11 @@ class RawPolygon {
 
 		//VAOfreeQ.push(VAO);
 		//VBOfreeQ.push(VBO);
+	}
+
+	void free() {
+		glDeleteVertexArrays(1, &VAO);
+		glDeleteBuffers(1, &VBO);
 	}
 
 	GLFWwindow* myWindow = null;
