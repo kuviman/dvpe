@@ -32,14 +32,15 @@ void renderBox() {
 }
 
 void main() {
-	auto font = new TextureFont(Texture.loadFromMem(importBinary!"font.png"));
-	auto font2 = TTFFont.loadFromMem(importBinary!"font.ttf", 12);
 	display.title = "VPE Box3D Example";
 	display.setMode(400, 400, false);
+
 	boxTex = Texture.loadFromMem(importBinary!"box.jpg");
 	Shader vig = new Shader(import("vignetting.glsl"));
+
 	auto mat = mat4.identity;
-	mainloop: while (!gotEvent!Quit) {
+
+	while (!gotEvent!Quit) {
 		if (gotEvent!KeyDown(Key.Escape)) break;
 
 		foreach (e; getEvents!Scroll) {
@@ -68,14 +69,6 @@ void main() {
 		renderBox();
 		draw.depthTesting = false;
 
-		draw.load();
-
-		draw.save();
-		draw.view(draw.height);
-		auto pos = vec2(10, 10);
-		draw.translate(-draw.width / 2 + pos.x, -draw.height / 2 + pos.y);
-		draw.scale(28);
-		font2.render(display.title);
 		draw.load();
 
 		display.flip();
