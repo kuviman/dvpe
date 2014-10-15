@@ -58,6 +58,10 @@ struct vector(size_t n, T = real) if (n > 0) {
 		return res;
 	}
 
+	auto opOpAssign(string op, T2)(T2 other) {
+		return this = this.opBinary!op(other);
+	}
+
 	static if (n == 2 && isFloatingPoint!T) {
 		auto rotate(T angle) {
 			T sn = sin(angle), cs = cos(angle);
