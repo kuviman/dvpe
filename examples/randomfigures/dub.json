@@ -1,0 +1,9 @@
+{
+	"name": "VPE Random Figures Example",
+	"targetPath": "bin",
+	"targetType": "executable",
+	"dependencies": {
+		"vpe": "~master"
+	},
+	"sourcePaths": ["."]
+}
