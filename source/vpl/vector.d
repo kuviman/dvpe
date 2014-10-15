@@ -57,4 +57,23 @@ struct vector(size_t n, T = real) if (n > 0) {
 			res[i] = .opBinary!op(this[i], other);
 		return res;
 	}
+
+	static if (n == 2 && isFloatingPoint!T) {
+		auto rotate(T angle) {
+			T sn = sin(angle), cs = cos(angle);
+			return vector!(2, T)(x * cs - y * sn, x * sn + y * cs);
+		}
+		T arg() {
+			return atan2(y, x);
+		}
+	}
+
+	static if (isFloatingPoint!T) {
+		T length() {
+			T res = 0;
+			foreach (i; RangeTuple!n)
+				res += get!i ^^ 2;
+			return sqrt(res);
+		}
+	}
 }
