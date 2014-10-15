@@ -35,3 +35,13 @@ void rect(real x1, real y1, real x2, real y2) {
 void rect(vec2 p1, vec2 p2) {
 	rect(p1.x, p1.y, p2.x, p2.y);
 }
+
+void frame(real x1, real y1, real x2, real y2, real width) {
+	draw.line(x1, y1, x2, y1, width);
+	draw.line(x2, y1, x2, y2, width);
+	draw.line(x2, y2, x1, y2, width);
+	draw.line(x1, y2, x1, y1, width);
+}
+void frame(vec2 p1, vec2 p2, real width) {
+	frame(p1.x, p1.y, p2.x, p2.y, width);
+}
