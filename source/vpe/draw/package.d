@@ -39,6 +39,13 @@ vec2i size() {
 	return renderAreaSizeStack[$ - 1];
 }
 
+Font font;
+
+auto measureText(string text) { return font.measure(text); }
+void text(string text) {
+	font.render(text);
+}
+
 auto width() { return size.x; }
 auto height() { return size.y; }
 auto aspect() { return cast(real) width / height; }

@@ -52,7 +52,7 @@ void setMode(int width, int height, bool fullscreen = defaultFullscreen) {
 	log("Registering events for new window");
 	registerEvents(window);
 
-	initRender();
+	reinitRender();
 }
 
 vec2i size() {
