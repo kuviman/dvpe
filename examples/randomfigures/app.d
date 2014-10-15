@@ -52,6 +52,10 @@ void main() {
 
 		if (gotEvent!MouseButtonDown(MouseButton.Left))
 			figures ~= new Figure(mouse.position);
+		if (Key.Space.pressed)
+			figures ~= new Figure(vec2(
+				random!real(0, draw.width),
+				random!real(0, draw.height)));
 
 		draw.clear(0.8, 0.8, 1);
 		draw.save();
@@ -61,10 +65,15 @@ void main() {
 		foreach (f; figures)
 			f.render();
 
-		draw.color(Color.Black);
+		draw.save();
 		draw.translate(10, 10);
 		draw.scale(20);
-		draw.text("NumFugures: %s; FPS: %s".format(figures.length, clock.FPS.to!int));
+		draw.color(1, 1, 1, 0.75);
+		auto text = "NumFugures: %s; FPS: %s".format(figures.length, clock.FPS.to!int);
+		draw.rect(0, 0, draw.measureText(text), 1);
+		draw.color(Color.Black);
+		draw.text(text);
+		draw.load();
 
 		draw.load();
 
