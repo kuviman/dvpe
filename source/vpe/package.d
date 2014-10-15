@@ -10,6 +10,7 @@ public {
 	import vpe.events;
 	import vpe.texture;
 	import vpe.font;
+	import vpe.state;
 }
 
 import vpe.internal;
