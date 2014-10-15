@@ -30,4 +30,13 @@ struct Color {
 		else { r = v; g = p; b = q; }
 		return Color(r, g, b, a);
 	}
+
+	enum Color Black = Color(0, 0, 0);
+	enum Color White = Color(1, 1, 1);
+	enum Color Red = Color(1, 0, 0);
+	enum Color Green = Color(0, 1, 0);
+	enum Color Blue = Color(0, 0, 1);
+	enum Color Yellow = Color(1, 1, 0);
+	enum Color Cyan = Color(0, 1, 1);
+	enum Color Magenta = Color(1, 0, 1);
 }
