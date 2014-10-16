@@ -11,6 +11,12 @@ class Shader {
 	void renderQuad() { renderPoly(this, quadPoly); }
 	alias renderQuad render;
 
+	void setFloat(string name, real val) {
+		glUseProgram(program);
+		GLint pos = glGetUniformLocation(program, name.toStringz);
+		GLfloat v = val;
+		glUniform1fv(pos, 1, &v);
+	}
 	void setVec4(string name, vec4 vec) {
 		glUseProgram(program);
 		GLint pos = glGetUniformLocation(program, name.toStringz);
