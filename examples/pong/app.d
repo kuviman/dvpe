@@ -139,6 +139,8 @@ class World {
 	real borderSize = 1;
 	Color borderColor = Color.White;
 
+	int scoreLeft = 0, scoreRight = 0;
+
 	void update(real dt) {
 		foreach (player; players) {
 			player.think(this);
@@ -148,6 +150,8 @@ class World {
 		foreach (ball; balls) {
 			ball.update(dt);
 			if (ball.pos.x.abs > size.x - ball.size) {
+				if (ball.pos.x < 0) scoreRight++;
+				else scoreLeft++;
 				balls = [new Ball()];
 				break;
 				//ball.pos.x = (size.x - ball.size) * ball.pos.x.sign;
@@ -179,6 +183,20 @@ class World {
 		draw.frame(-size, size, borderSize);
 		draw.load();
 
+		draw.save();
+		draw.color(col);
+		draw.translate(-size.x / 2, 0);
+		draw.scale(size.y / 3);
+		draw.text(scoreLeft.to!string, 0.5, 0.5);
+		draw.load();
+
+		draw.save();
+		draw.color(col);
+		draw.translate(size.x / 2, 0);
+		draw.scale(size.y / 3);
+		draw.text(scoreRight.to!string, 0.5, 0.5);
+		draw.load();
+
 		foreach (player; players)
 			player.render();
 		foreach (ball; balls)
@@ -198,8 +216,8 @@ class Pong : State {
 			return player;
 		}
 		auto leftPlayer = new AIPlayer();
-		auto rightPlayer = new AIPlayer();
-		//auto rightPlayer = new ControlledPlayer(Key.Down, Key.Up);
+		//auto rightPlayer = new AIPlayer();
+		auto rightPlayer = new ControlledPlayer(Key.Down, Key.Up);
 		world.players ~= setPos(leftPlayer, -world.size.x * playersPos);
 		world.players ~= setPos(rightPlayer, +world.size.x * playersPos);
 		world.balls ~= new Ball();
@@ -219,5 +237,9 @@ class Pong : State {
 
 void main() {
 	display.title = "VPE Pong Example";
+	auto font = cast(TTFFont) draw.font;
+	if (font !is null) {
+		font.smooth = false;
+	}
 	new Pong().run();
 }
