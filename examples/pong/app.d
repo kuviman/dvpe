@@ -86,8 +86,11 @@ class Ball {
 	}
 
 	void update(real dt) {
-		pos += vel * dt;
+		speed = clamp(speed + accel * dt, 0, 1);
+		pos += vel * speed * dt;
 	}
+	real speed = 0;
+	real accel = 0.5;
 
 	void render() {
 		draw.save();
