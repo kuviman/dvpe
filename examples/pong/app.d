@@ -49,8 +49,18 @@ class AIPlayer : Player {
 			move(0);
 			return;
 		}
-		move((ball.pos.y - pos.y) / 30);
-		nextThink = random!real(0.2, 0.3);
+		// ball.pos.x + ball.vel.x * t = pos.x
+		if (ball.vel.x == 0) return;
+		auto t = (pos.x - ball.pos.x) / ball.vel.x;
+		auto y = ball.pos.y + ball.vel.y * t;
+		while (abs(y) > world.size.y) {
+			if (y < -world.size.y)
+				y = -world.size.y + (-world.size.y - y);
+			else
+				y = world.size.y - (y - world.size.y);
+		}
+		move((y - pos.y) / 30);
+		nextThink = random!real(0.1, 0.2);
 	}
 	real nextThink = 0;
 	override void update(real dt) {
@@ -164,8 +174,8 @@ class Pong : State {
 			return player;
 		}
 		auto leftPlayer = new AIPlayer();
-		//auto rightPlayer = new AIPlayer();
-		auto rightPlayer = new ControlledPlayer(Key.Down, Key.Up);
+		auto rightPlayer = new AIPlayer();
+		//auto rightPlayer = new ControlledPlayer(Key.Down, Key.Up);
 		world.players ~= setPos(leftPlayer, -world.size.x * playersPos);
 		world.players ~= setPos(rightPlayer, +world.size.x * playersPos);
 		world.balls ~= new Ball();
