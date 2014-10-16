@@ -20,9 +20,11 @@ class TTFFont : Font {
 		return cast(real) w / h;
 	}
 	void render(string text) {
-		SDL_Surface* surface = TTF_RenderText_Blended(rfont, text.toStringz, SDL_Color(0xff, 0xff, 0xff));
+		SDL_Surface* surface = smooth ?
+			TTF_RenderText_Blended(rfont, text.toStringz, SDL_Color(0xff, 0xff, 0xff)):
+			TTF_RenderText_Solid(rfont, text.toStringz, SDL_Color(0xff, 0xff, 0xff));
 		auto tex = textureFromSurface(surface);
-		tex.smooth = true;
+		tex.smooth = _smooth;
 		draw.save();
 		draw.scale(cast(real) tex.width / tex.height, 1);
 		tex.render();
@@ -44,6 +46,12 @@ class TTFFont : Font {
 
 	void style(Style value) {
 		TTF_SetFontStyle(rfont, cast(int)value);
+	}
+
+	private bool _smooth = true;
+	bool smooth() { return _smooth; }
+	void smooth(bool value) {
+		_smooth = value;
 	}
 
 private:
