@@ -79,5 +79,8 @@ struct vector(size_t n, T = real) if (n > 0) {
 				res += get!i ^^ 2;
 			return sqrt(res);
 		}
+		auto unit() {
+			return this / length;
+		}
 	}
 }
