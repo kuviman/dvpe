@@ -91,14 +91,22 @@ class Ball {
 
 	vec2 vel;
 	this(real speed = 400) {
+		this.setSpeed = speed;
 		vel = vec2(speed, 0).rotate(random!real(-PI / 4, PI / 4));
 		if (random!bool()) vel = -vel;
 	}
 
+	real setSpeed;
+
 	void update(real dt) {
 		speed = clamp(speed + accel * dt, 0, 1);
+		if (abs(vel.y) > abs(vel.x)) {
+			vel.x += fixX * vel.x.sign * dt;
+			vel = vel.unit * setSpeed;
+		}
 		pos += vel * speed * dt;
 	}
+	real fixX = 300;
 	real speed = 0;
 	real accel = 0.5;
 
