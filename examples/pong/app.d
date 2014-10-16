@@ -170,15 +170,19 @@ class World {
 		}
 	}
 	void render() {
+		draw.save();
+		auto col = borderColor;
+		col.a *= 0.5;
+		draw.color(col);
+		draw.dashedLine(0, -size.y, 0, size.y, borderSize);
+		draw.color(borderColor);
+		draw.frame(-size, size, borderSize);
+		draw.load();
+
 		foreach (player; players)
 			player.render();
 		foreach (ball; balls)
 			ball.render();
-
-		draw.save();
-		draw.color(borderColor);
-		draw.frame(-size, size, borderSize);
-		draw.load();
 	}
 }
 

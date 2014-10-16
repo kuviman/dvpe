@@ -25,6 +25,24 @@ void line(real x1, real y1, real x2, real y2, real width) {
 	line(vec2(x1, y1), vec2(x2, y2), width);
 }
 
+void dashedLine(vec2 p1, vec2 p2, real width, real gap = -1, real period = -1) {
+	if (period < 0) period = width * 7;
+	if (gap < 0) gap = width * 2;
+	draw.save();
+	draw.translate(p1.x, p1.y);
+	draw.rotate((p2 - p1).arg);
+	auto len = (p2 - p1).length;
+	draw.scale(len, width);
+	draw.translate(0, -0.5);
+	dashedShader.setFloat("period", period / len);
+	dashedShader.setFloat("gap", gap / len);
+	dashedShader.render();
+	draw.load();
+}
+void dashedLine(real x1, real y1, real x2, real y2, real width, real gap = -1, real period = -1) {
+	dashedLine(vec2(x1, y1), vec2(x2, y2), width, gap, period);
+}
+
 void rect(real x1, real y1, real x2, real y2) {
 	draw.save();
 	draw.translate(x1, y1);

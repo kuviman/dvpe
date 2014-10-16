@@ -5,7 +5,7 @@ import vpe.internal;
 RawPolygon quadPoly;
 RawShader basicVertexShader;
 
-Shader colorShader, textureShader, circleShader;
+Shader colorShader, textureShader, circleShader, dashedShader;
 
 void initShaders() {
 	quadPoly = new RawPolygon(vec2(0, 0), vec2(1, 0), vec2(1, 1), vec2(0, 1));
@@ -13,6 +13,7 @@ void initShaders() {
 	colorShader = new Shader(import("shader/fragment/color.glsl"));
 	textureShader = new Shader(import("shader/fragment/texture.glsl"));
 	circleShader = new Shader(import("shader/fragment/circle.glsl"));
+	dashedShader = new Shader(import("shader/fragment/dashed.glsl"));
 }
 
 void renderPoly(Shader shader, RawPolygon polygon) {
