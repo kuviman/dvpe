@@ -8,7 +8,9 @@ public {
 import vpe.internal;
 
 void initRender() {
-	draw.font = TTFFont.loadFromMem(importBinary!"font/default.ttf", 16);
+	auto font = TTFFont.loadFromMem(importBinary!"font/default.ttf", 16);
+	font.style = TTFFont.Style.Bold;
+	draw.font = font;
 }
 
 void reinitRender() {

@@ -39,6 +39,9 @@ vec2i size() {
 Font font;
 
 auto measureText(string text) { return font.measure(text); }
+void text(string text, real ax, real ay = 0) {
+	font.render(text, ax, ay);
+}
 void text(string text) {
 	font.render(text);
 }

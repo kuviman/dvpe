@@ -3,6 +3,15 @@ module vpe.font.ttf;
 import vpe.internal;
 
 class TTFFont : Font {
+
+	enum Style {
+		Normal = TTF_STYLE_NORMAL,
+		Bold = TTF_STYLE_BOLD,
+		Italic = TTF_STYLE_ITALIC,
+		Underline = TTF_STYLE_UNDERLINE,
+		Strikethrough = TTF_STYLE_STRIKETHROUGH
+	}
+
 	private this() {}
 
 	real measure(string text) {
@@ -32,6 +41,11 @@ class TTFFont : Font {
 			data.ptr, cast(int)data.length), 1, ptsize));
 		return res;
 	}
+
+	void style(Style value) {
+		TTF_SetFontStyle(rfont, cast(int)value);
+	}
+
 private:
 	RawTTF rfont;
 }
