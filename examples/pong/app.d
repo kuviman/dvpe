@@ -51,7 +51,10 @@ class AIPlayer : Player {
 		}
 		// ball.pos.x + ball.vel.x * t = pos.x
 		if (ball.vel.x == 0) return;
-		auto t = (pos.x - ball.pos.x) / ball.vel.x;
+		real tox = pos.x;
+		if (ball.vel.x.sign != (pos.x - ball.pos.x).sign)
+			tox = (ball.pos.x - pos.x).sign * world.size.x * 3;
+		auto t = (tox - ball.pos.x) / ball.vel.x;
 		auto y = ball.pos.y + ball.vel.y * t;
 		while (abs(y) > world.size.y) {
 			if (y < -world.size.y)
@@ -59,13 +62,22 @@ class AIPlayer : Player {
 			else
 				y = world.size.y - (y - world.size.y);
 		}
+		this.targetY = y;
 		move((y - pos.y) / 30);
 		nextThink = random!real(0.1, 0.2);
 	}
+	real targetY = 0;
 	real nextThink = 0;
 	override void update(real dt) {
 		super.update(dt);
 		nextThink -= dt;
+	}
+	override void render() {
+		super.render();
+		draw.save();
+		draw.color(1, 0, 0, 0.2);
+		draw.circle(pos.x, targetY, size.x * 1.5);
+		draw.load();
 	}
 }
 
