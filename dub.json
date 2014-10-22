@@ -6,5 +6,17 @@
 		"derelict-glfw3": "~master",
 		"derelict-gl3": "~master",
 		"derelict-sdl2": "~master"
-	}
+	},
+	"configurations": [
+		{
+			"name": "default",
+			"targetType": "library"
+		},
+		{
+			"name": "buildDocs",
+			"targetType": "library",
+			"buildOptions": ["syntaxOnly"],
+			"dflags": ["-Df__dummy.html", "-Xfdocs.json"]
+		}
+	]
 }

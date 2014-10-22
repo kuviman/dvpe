@@ -13,6 +13,11 @@
 			{
 				"name": "Run",
 				"shell_cmd": "dub"
+			},
+			{
+				"name": "Build Docs",
+				"working_dir": "$project_path",
+				"shell_cmd": "sh buildDocs.sh"
 			}
 		]
 	}]
