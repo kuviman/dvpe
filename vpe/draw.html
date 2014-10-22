@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/><!-- using block title in layout.dt--><!-- using block ddox.defs in ddox.layout.dt--><!-- using block ddox.title in ddox.layout.dt-->
+		<title>Module vpe.draw</title>
+		<link rel="stylesheet" type="text/css" href="../styles/ddox.css"/>
+		<link rel="stylesheet" href="../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../scripts/jquery.js">/**/</script>
+		<script type="text/javascript" src="../prettify/prettify.js">/**/</script>
+		<script type="text/javascript" src="../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="prettyPrint(); setupDdox();">
+		<nav id="main-nav"><!-- using block navigation in layout.dt-->
+						<ul>
+						<li>
+							<a href="../vpe/draw/area.html">vpe.draw.area</a>
+						</li>
+						<li>
+							<a href="../vpe/draw/primitives.html">vpe.draw.primitives</a>
+						</li>
+						<li>
+							<a href="../vpe/draw/transform.html">vpe.draw.transform</a>
+						</li>
+						<li>
+							<a href="../vpe/font/texture.html">vpe.font.texture</a>
+						</li>
+						<li>
+							<a href="../vpe/font/ttf.html">vpe.font.ttf</a>
+						</li>
+						<li>
+							<a href="../vpe/input/key.html">vpe.input.key</a>
+						</li>
+						<li>
+							<a href="../vpe/input/keyboard.html">vpe.input.keyboard</a>
+						</li>
+						<li>
+							<a href="../vpe/input/mouse.html">vpe.input.mouse</a>
+						</li>
+						<li>
+							<a href="../vpe/input/mousebutton.html">vpe.input.mousebutton</a>
+						</li>
+						<li>
+							<a href="../vpe/clock.html">vpe.clock</a>
+						</li>
+						<li>
+							<a href="../vpe/color.html">vpe.color</a>
+						</li>
+						<li>
+							<a href="../vpe/display.html">vpe.display</a>
+						</li>
+						<li>
+							<a href="../vpe/draw.html">vpe.draw</a>
+						</li>
+						<li>
+							<a href="../vpe/events.html">vpe.events</a>
+						</li>
+						<li>
+							<a href="../vpe/font.html">vpe.font</a>
+						</li>
+						<li>
+							<a href="../vpe/input.html">vpe.input</a>
+						</li>
+						<li>
+							<a href="../vpe/shader.html">vpe.shader</a>
+						</li>
+						<li>
+							<a href="../vpe/state.html">vpe.state</a>
+						</li>
+						<li>
+							<a href="../vpe/texture.html">vpe.texture</a>
+						</li>
+						</ul>
+				<noscript>
+					<p style="color: red">The search functionality needs JavaScript enabled</p>
+				</noscript>
+				<div id="symbolSearchPane" style="display: none">
+					<p>
+						<input id="symbolSearch" type="text" placeholder="Search for symbols" onchange="performSymbolSearch(24);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+					</p>
+	<ul id="symbolSearchResults" style="display: none"></ul>
+	<script type="application/javascript" src="../symbols.js"></script>
+	<script type="application/javascript">
+var symbolSearchRootDir = "../";
+$('#symbolSearchPane').show();
+	</script>
+				</div>
+				<script type="text/javascript" src="../scripts/mousetrap.js"></script>
+				<script type="text/javascript">
+$(document).ready(function() {
+	Mousetrap.bind('s', function(e) {
+		$("#symbolSearch").focus();
+		return false;
+	});
+});
+				</script>
+		</nav>
+		<div id="main-contents">
+			<h1>Module vpe.draw</h1><!-- using block body in layout.dt--><!-- using block ddox.description in ddox.layout.dt-->
+			<p> Rendering primitives and render state manipulation
+</p>
+<!-- using block ddox.sections in ddox.layout.dt-->
+			<section></section><!-- using block ddox.members in ddox.layout.dt-->
+			<section>
+				<h2>Functions</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a id="aspect" class="public" href="../vpe/draw/aspect.html">
+								<code>aspect</code>
+							</a>
+						</td>
+						<td>Get rendering area <code class="prettyprint lang-d">aspect</code>
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="beginTexture" class="public" href="../vpe/draw/beginTexture.html">
+								<code>beginTexture</code>
+							</a>
+						</td>
+						<td>Begin rendering to the <a href="../vpe/draw/beginTexture.html#texture"><code class="prettyprint lang-d">texture</code></a>
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="clear" class="public" href="../vpe/draw/clear.html">
+								<code>clear</code>
+							</a>
+						</td>
+						<td>Clear rendering area using specified <a href="../vpe/draw/color.html"><code class="prettyprint lang-d">color</code></a>
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="color" class="public" href="../vpe/draw/color.html">
+								<code>color</code>
+							</a>
+						</td>
+						<td>Set rendering <a href="../vpe/draw/color.html#color"><code class="prettyprint lang-d">color</code></a>
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="depthTesting" class="public" href="../vpe/draw/depthTesting.html">
+								<code>depthTesting</code>
+							</a>
+						</td>
+						<td>Enable or disable <code class="prettyprint lang-d">depthTesting</code> (3d-mode)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="endTexture" class="public" href="../vpe/draw/endTexture.html">
+								<code>endTexture</code>
+							</a>
+						</td>
+						<td>End rendering to the texture
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="height" class="public" href="../vpe/draw/height.html">
+								<code>height</code>
+							</a>
+						</td>
+						<td>Get rendering area <code class="prettyprint lang-d">height</code>
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="load" class="public" href="../vpe/draw/load.html">
+								<code>load</code>
+							</a>
+						</td>
+						<td>Load rendering state (pop from stack)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="measureText" class="public" href="../vpe/draw/measureText.html">
+								<code>measureText</code>
+							</a>
+						</td>
+						<td>Measure <a href="../vpe/draw/measureText.html#text"><code class="prettyprint lang-d">text</code></a> using default <a href="../vpe/draw/font.html"><code class="prettyprint lang-d">font</code></a>
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="save" class="public" href="../vpe/draw/save.html">
+								<code>save</code>
+							</a>
+						</td>
+						<td>Save rendering state (push to stack)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="size" class="public" href="../vpe/draw/size.html">
+								<code>size</code>
+							</a>
+						</td>
+						<td>Get rendering area <code class="prettyprint lang-d">size</code>
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="text" class="public" href="../vpe/draw/text.html">
+								<code>text</code>
+							</a>
+						</td>
+						<td> Render <a href="../vpe/draw/text.html#text"><code class="prettyprint lang-d">text</code></a> using default <a href="../vpe/draw/font.html"><code class="prettyprint lang-d">font</code></a>
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="width" class="public" href="../vpe/draw/width.html">
+								<code>width</code>
+							</a>
+						</td>
+						<td>Get rendering area <code class="prettyprint lang-d">width</code>
+</td>
+					</tr>
+				</table>
+			</section>
+			<section>
+				<h2>Global variables</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a id="font" class="public" href="../vpe/draw/font.html">
+								<code>font</code>
+							</a>
+						</td>
+						<td>
+<code class="prettyprint lang-d"><a href="../vpe/font/Font.html">Font</a></code>
+						</td>
+						<td>Default rendering <code class="prettyprint lang-d">font</code>
+</td>
+					</tr>
+				</table>
+			</section>
+			<section>
+				<h2>Authors</h2><!-- using block ddox.authors in ddox.layout.dt-->
+
+			</section>
+			<section>
+				<h2>Copyright</h2><!-- using block ddox.copyright in ddox.layout.dt-->
+
+			</section>
+			<section>
+				<h2>License</h2><!-- using block ddox.license in ddox.layout.dt-->
+
+			</section>
+		</div>
+	</body>
+</html>
