@@ -1,7 +1,9 @@
+/// color
 module vpe.color;
 
 import vpe.internal;
 
+/// Color
 struct Color {
 	vec4 vec;
 	alias vec this;
@@ -15,6 +17,7 @@ struct Color {
 	ref b() { return vec.z; }
 	ref a() { return vec.w; }
 
+	/// Convert from HSV
 	static Color fromHSV(real h, real s, real v, real a = 1) {
 		h -= floor(h);
 		real r, g, b;

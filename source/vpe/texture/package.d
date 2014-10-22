@@ -1,23 +1,30 @@
+/// texture manipulation
 module vpe.texture;
 
 import vpe.internal;
 
+/// Texture
 class Texture {
 	package this() {
 		tex = new RawTexture();
 		this.smooth = false;
 	}
+	/// Create an empty texture
 	this(int width, int height) {
 		this();
 		_width = width; _height = height;
 		glBindTexture(GL_TEXTURE_2D, tex);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, cast(const(void)*)null);
 	}
+	/// Get width
 	auto width() { return _width; }
+	/// Get height
 	auto height() { return _height; }
 
+	/// Get size
 	auto size() { return vec2i(width, height); }
 
+	/// Get or set smoothness
 	void smooth(bool value) {
 		auto filter = value ? GL_LINEAR : GL_NEAREST;
 		glBindTexture(GL_TEXTURE_2D, tex);
@@ -25,6 +32,7 @@ class Texture {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
 	}
 
+	/// Render in a quad
 	void render() {
 		alias textureShader shader;
 		shader.setMat3("textureMatrix", mat3.identity);
@@ -32,7 +40,9 @@ class Texture {
 		shader.renderQuad();
 	}
 
+	/// Render subtexture
 	void renderSub(vec2 pos, vec2 size) { renderSub(pos.x, pos.y, size.x, size.y); }
+	/// ditto
 	void renderSub(real x, real y, real sizex, real sizey) {
 		alias textureShader shader;
 		auto mat = mat3.createTranslation(x, y) * mat3.createScale(sizex, sizey);
@@ -41,6 +51,7 @@ class Texture {
 		shader.renderQuad();
 	}
 
+	/// Load from file
 	static Texture load(string path) {
 		auto tex = new Texture();
 		auto image = IMG_Load(path.toStringz);
@@ -51,6 +62,7 @@ class Texture {
 		return tex;
 	}
 
+	/// Load from memory
 	static Texture loadFromMem(const byte[] data) {
 		auto tex = new Texture();
 		auto image = IMG_Load_RW(SDL_RWFromConstMem(data.ptr, cast(int)data.length), 1);

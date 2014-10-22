@@ -1,14 +1,21 @@
+/// clock
 module vpe.clock;
 
 import vpe.internal;
 import std.container : DList;
 
+/// Clock
 class Clock {
 	private real oldTime;
 	private real startTime;
+	/// Create a clock
 	this() {
 		startTime = oldTime = glfwGetTime();
 	}
+	/**
+	 * Tick
+	 * Returns: time since last tick
+	 */
 	real tick() {
 		auto newTime = glfwGetTime();
 		auto dt = newTime - oldTime;
@@ -26,10 +33,12 @@ class Clock {
 
 		return dt;
 	}
+	/// Get current time
 	real currentTime() {
 		return glfwGetTime() - startTime;
 	}
 
+	/// Get current FPS
 	real FPS() {
 		if (cntFrames == 0) return 0;
 		return cntFrames / sumFrames;

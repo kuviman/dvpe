@@ -1,8 +1,11 @@
+/// vpe.font submodule
 module vpe.font.texture;
 
 import vpe.internal;
 
+/// Texture font
 class TextureFont : Font {
+	/// Create a texture font from given texture
 	this(Texture texture) {
 		this.texture = texture;
 	}

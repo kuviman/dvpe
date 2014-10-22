@@ -1,3 +1,4 @@
+/// Display manipulation
 module vpe.display;
 
 import vpe.internal;
@@ -7,7 +8,10 @@ else enum defaultFullscreen = true;
 enum defaultWidth = 640, defaultHeight = 480;
 
 private bool _fullscreen = defaultFullscreen;
+
+/// Get or set fullscreen
 bool fullscreen() { return _fullscreen; }
+/// ditto
 void fullscreen(bool value) {
 	setMode(-1, -1, value);
 }
@@ -17,13 +21,17 @@ private void setDefaultMode() {
 }
 
 private string _title = "VPE application";
+
+/// Get or set title
 string title() { return _title; }
+/// ditto
 void title(string value) {
 	_title = value;
 	if (window !is null)
 		glfwSetWindowTitle(window, value.toStringz);
 }
 
+/// Set video mode
 void setMode(int width, int height, bool fullscreen = defaultFullscreen) {
 	_fullscreen = fullscreen;
 	GLFWmonitor* monitor = fullscreen ? glfwGetPrimaryMonitor() : null;
@@ -55,15 +63,20 @@ void setMode(int width, int height, bool fullscreen = defaultFullscreen) {
 	reinitRender();
 }
 
+/// Get window size
 vec2i size() {
 	vec2i res;
 	glfwGetWindowSize(window, &res.x(), &res.y());
 	return res;
 }
+/// Get window width
 int width() { return size.x; }
+/// Get window height
 int height() { return size.y; }
+/// Get window aspect
 real aspect() { return cast(real) width / height; }
 
+/// Swap buffers & update event queue
 void flip() {
 	if (window is coreWindow)
 		setDefaultMode();

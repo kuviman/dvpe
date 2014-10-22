@@ -1,3 +1,4 @@
+/// Input manipulations
 module vpe.input;
 
 public {

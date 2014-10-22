@@ -1,14 +1,22 @@
+/// state
 module vpe.state;
 
 import vpe.internal;
 
-class State {
+/// Abstract state
+abstract class State {
+	/// keyDown event handler
 	void keyDown(Key key) {}
+	/// keyRepeat event handler
 	void keyRepeat(Key key) {}
+	/// keyUp event handler
 	void keyUp(Key key) {}
+	/// mouseButtonDown event handler
 	void mouseButtonDown(MouseButton button) {}
+	/// mouseButtonUp event handler
 	void mouseButtonUp(MouseButton button) {}
 
+	/// Run the mainloop
 	void run() {
 		auto clock = new Clock();
 		running = true;
@@ -29,9 +37,12 @@ class State {
 		}
 	}
 
+	/// Update the state
 	void update(real dt) {}
+	/// Render
 	void render() {}
 
+	/// Stop running
 	void close() {
 		running = false;
 	}

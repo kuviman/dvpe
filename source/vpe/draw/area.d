@@ -1,3 +1,4 @@
+/// vpe.draw submodule
 module vpe.draw.area;
 
 import vpe.internal;
@@ -18,12 +19,14 @@ package {
 	}
 }
 
+/// Begin rendering to area
 void beginArea(int x, int y, int w, int h) {
 	renderAreaPosStack ~= renderAreaPos + vec2i(x, y);
 	renderAreaSizeStack ~= vec2i(w, h);
 	applyArea();
 }
 
+/// End rendering to area
 void endArea() {
 	renderAreaPosStack = renderAreaPosStack[0..$ - 1];
 	renderAreaSizeStack = renderAreaSizeStack[0..$ - 1];
