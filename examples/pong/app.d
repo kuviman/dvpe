@@ -7,7 +7,7 @@ class Player {
 
 	Color color = Color.White;
 
-	real speed = 300;
+	real speed = 200;
 	private real direction = 0, needDirection = 0;
 
 	void move(real dir) {
@@ -64,7 +64,7 @@ class AIPlayer : Player {
 		}
 		this.targetY = y;
 		move((y - pos.y) / 30);
-		nextThink = random!real(0.1, 0.2);
+		nextThink = random!real(0.2, 0.3);
 	}
 	real targetY = 0;
 	real nextThink = 0;
