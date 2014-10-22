@@ -72,7 +72,7 @@ void flip() {
 	glfwSwapBuffers(window);
 	if (glfwWindowShouldClose(window)) {
 		eventQueue!Quit ~= Quit();
-		glfwSetWindowShouldClose(window, GL_FALSE);
+		//glfwSetWindowShouldClose(window, GL_FALSE);
 	}
 	freeResources();
 }
