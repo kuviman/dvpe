@@ -74,10 +74,10 @@ class AIPlayer : Player {
 	}
 	override void render() {
 		super.render();
-		draw.save();
-		draw.color(1, 0, 0, 0.2);
-		draw.circle(pos.x, targetY, size.x * 1.5);
-		draw.load();
+		//draw.save();
+		//draw.color(1, 0, 0, 0.2);
+		//draw.circle(pos.x, targetY, size.x * 1.5);
+		//draw.load();
 	}
 }
 
@@ -208,16 +208,15 @@ class Pong : State {
 	Color backgroundColor = Color.Black;
 
 	World world;
-	this() {
+	this(bool player1, bool player2) {
 		world = new World();
 		enum playersPos = 0.9;
 		auto setPos(Player player, real x) {
 			player.pos.x = x;
 			return player;
 		}
-		auto leftPlayer = new AIPlayer();
-		//auto rightPlayer = new AIPlayer();
-		auto rightPlayer = new ControlledPlayer(Key.Down, Key.Up);
+		auto leftPlayer = player1 ? new ControlledPlayer(Key.S, Key.W) : new AIPlayer();
+		auto rightPlayer = player2 ? new ControlledPlayer(Key.Down, Key.Up) : new AIPlayer();
 		world.players ~= setPos(leftPlayer, -world.size.x * playersPos);
 		world.players ~= setPos(rightPlayer, +world.size.x * playersPos);
 		world.balls ~= new Ball();
@@ -235,11 +234,62 @@ class Pong : State {
 	override void keyDown(Key key) { if (key == Key.Escape) close(); }
 }
 
+class Menu : State {
+	auto selColor = Color.Red, regColor = Color.White;
+	bool player1 = false, player2 = true;
+	override void render() {
+		super.render();
+		draw.clear(Color.Black);
+		draw.save();
+		draw.view(20);
+		draw.translate(0, 3);
+		draw.save();
+		draw.scale(2);
+		draw.color(0.6, 0.6, 0.6);
+		draw.text("VPE Pong Example", 0.5);
+		draw.load();
+		draw.translate(0, -3);
+		draw.color(sel == 0 ? selColor : regColor);
+		draw.text("Play!", 0.5);
+		draw.translate(0, -2);
+		draw.color(sel == 1 ? selColor : regColor);
+		draw.text("Left player : %s".format(player1 ? "W/S" : "AI"), 0.5);
+		draw.translate(0, -1);
+		draw.color(sel == 2 ? selColor : regColor);
+		draw.text("Right player : %s".format(player2 ? "Up/Down" : "AI"), 0.5);
+		draw.translate(0, -2);
+		draw.color(sel == 3 ? selColor : regColor);
+		draw.text("Exit", 0.5);
+		draw.load();
+	}
+	int sel = 0;
+	override void keyDown(Key key) {
+		super.keyDown(key);
+		if (key == Key.Escape)
+			close();
+		else if (key == Key.Down)
+			sel = (sel + 1) % 4;
+		else if (key == Key.Up)
+			sel = (sel + 3) % 4;
+		else if (key == Key.Enter) {
+			if (sel == 3)
+				close();
+			else if (sel == 0) {
+				new Pong(player1, player2).run();
+			} else if (sel == 1)
+				player1 = !player1;
+			else if (sel == 2)
+				player2 = !player2;
+		}
+	}
+}
+
 void main() {
 	display.title = "VPE Pong Example";
 	auto font = cast(TTFFont) draw.font;
 	if (font !is null) {
 		font.smooth = false;
 	}
-	new Pong().run();
+	new Menu().run();
+	//new Pong().run();
 }
