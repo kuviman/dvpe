@@ -235,11 +235,42 @@ class Pong : State {
 }
 
 class Menu : State {
+	Pong back;
+	Texture backTex;
+	real backT = 0;
+	this() {
+		back = new Pong(false, false);
+		//backTex = new Texture(160, 120);
+		backTex = new Texture(640, 480);
+		backTex.smooth = true;
+	}
+
+	override void update(real dt) {
+		super.update(dt);
+		back.update(dt / 5);
+		backT += dt / 10;
+	}
+
 	auto selColor = Color.Red, regColor = Color.White;
 	bool player1 = false, player2 = true;
 	override void render() {
 		super.render();
 		draw.clear(Color.Black);
+
+		draw.beginTexture(backTex);
+		back.render();
+		draw.endTexture();
+
+		draw.save();
+		draw.view(1);
+		draw.scale(1 + cos(backT) / 10);
+		draw.rotate(sin(backT) / 5);
+		draw.scale(backTex.aspect, 1);
+		draw.translate(-0.5, -0.5);
+		draw.color(1, 1, 1, 0.1);
+		backTex.render();
+		draw.load();
+
 		draw.save();
 		draw.view(20);
 		draw.translate(0, 3);
