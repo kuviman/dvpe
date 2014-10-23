@@ -5,7 +5,10 @@ public {
 	import vpl;
 
 	import derelict.glfw3.glfw3;
-	import derelict.opengl3.gl3;
+	version(OPENGL_NEW)
+		import derelict.opengl3.gl3;
+	else
+		import derelict.opengl3.gl;
 	import derelict.sdl2.image;
 	import derelict.sdl2.sdl;
 	import derelict.sdl2.ttf;
@@ -32,8 +35,13 @@ void initalizeVPE() {
 
 	log("Loading DerelictGLFW3");
 	DerelictGLFW3.load();
-	log("Loading DerelictGL3");
-	DerelictGL3.load();
+	version(OPENGL_NEW) {
+		log("Loading DerelictGL3");
+		DerelictGL3.load();
+	} else {
+		log("Loading DerelictGL");
+		DerelictGL.load();
+	}
 	log("Loading DerelictSDL2");
 	DerelictSDL2.load();
 	log("Loading DerelictSDL2Image");
@@ -64,7 +72,7 @@ void initalizeVPE() {
 	enforce(TTF_Init() == 0, "Could not initialize SDL_ttf");
 
 	log("Creating core window");
-	version (OSX) {
+	version (none) {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -75,8 +83,13 @@ void initalizeVPE() {
 	enforce(coreWindow, "Could not create core window");
 
 	glfwMakeContextCurrent(coreWindow);
-	log("Reloading DerelictGL3");
-	DerelictGL3.reload();
+	version(OPENGL_NEW) {
+		log("Reloading DerelictGL3");
+		DerelictGL3.reload();
+	} else {
+		log("Reloading DerelictGL");
+		DerelictGL.reload();
+	}
 
 	{
 		log("Initializing shaders");

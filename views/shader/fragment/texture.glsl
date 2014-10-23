@@ -1,12 +1,11 @@
-#version 150
+#version 120
 
 uniform vec4 color;
-out vec4 fragColor;
-in vec3 modelPos;
+varying vec3 modelPos;
 
 uniform mat3 textureMatrix;
 uniform sampler2D tex;
 
 void main() {
-	fragColor = texture(tex, (textureMatrix * vec3(modelPos.xy, 1)).xy) * color;
+	gl_FragColor = texture2D(tex, (textureMatrix * vec3(modelPos.xy, 1)).xy) * color;
 }

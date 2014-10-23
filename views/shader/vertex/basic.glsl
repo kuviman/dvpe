@@ -1,10 +1,10 @@
-#version 150
+#version 120
 
-in vec3 position;
+attribute vec3 position;
 
 uniform mat4 modelMatrix, projectionMatrix;
 
-out vec3 modelPos, worldPos, screenPos;
+varying vec3 modelPos, worldPos, screenPos;
 
 void main() {
 	modelPos = position;
