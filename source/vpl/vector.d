@@ -1,14 +1,28 @@
+/**
+ * Vector definition
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpl.vector;
 
 import vpl;
 
+/// 2d real vector
 alias vector!(2, real) vec2;
+/// 2d int vector
 alias vector!(2, int) vec2i;
+/// 3d real vector
 alias vector!(3, real) vec3;
+/// 3d int vector
 alias vector!(3, int) vec3i;
+/// 4d real vector
 alias vector!(4, real) vec4;
+/// 4d int vector
 alias vector!(4, int) vec4i;
 
+/// Vector struct template
 struct vector(size_t n, T = real) if (n > 0) {
 	T[n] array;
 	private ref get(size_t i)() { return array[i]; }

@@ -1,3 +1,10 @@
+/**
+ * Part of the D std library often needed
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpl.std;
 
 public {

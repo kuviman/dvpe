@@ -1,11 +1,22 @@
+/**
+ * Matrix definition
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpl.matrix;
 
 import vpl;
 
+/// 2x2 real matrix
 alias matrix!(2, 2, real) mat2;
+/// 3x3 real matrix
 alias matrix!(3, 3, real) mat3;
+/// 4x4 real matrix
 alias matrix!(4, 4, real) mat4;
 
+/// Matrix struct template
 struct matrix(size_t n, size_t m, T = real) {
 	enum rows = n, columns = m;
 
