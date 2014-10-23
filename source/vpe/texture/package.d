@@ -24,6 +24,9 @@ class Texture {
 	/// Get size
 	auto size() { return vec2i(width, height); }
 
+	/// Get aspect ratio
+	auto aspect() { return cast(real) width / height; }
+
 	/// Get or set smoothness
 	void smooth(bool value) {
 		auto filter = value ? GL_LINEAR : GL_NEAREST;
