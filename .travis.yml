@@ -22,7 +22,7 @@ before_install:
   - sudo make install
   - cd ..
   # install SDL_image
-  - wget https://www.libsdl.org/projects/SDL_ttf/release/SDL2_image-2.0.0.zip
+  - wget https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.0.zip
   - unzip SDL2_image-2.0.0.zip
   - cd SDL2_image-2.0.0
   - ./configure
