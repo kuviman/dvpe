@@ -10,10 +10,11 @@ vpe
 To use `vpe` you need [D compiler](http://dlang.org/download.html) and [Dub package manager](http://code.dlang.org/download)
 
 You also need dynamic libraries:
-	- [GLFW3](http://www.glfw.org/download.html)
-	- [SDL2](https://www.libsdl.org/download-2.0.php)
-	- [SDL2_image](https://www.libsdl.org/projects/SDL_image/)
-	- [SDL2_ttf](https://www.libsdl.org/projects/SDL_ttf/)
+
+- [GLFW3](http://www.glfw.org/download.html)
+- [SDL2](https://www.libsdl.org/download-2.0.php)
+- [SDL2_image](https://www.libsdl.org/projects/SDL_image/)
+- [SDL2_ttf](https://www.libsdl.org/projects/SDL_ttf/)
 
 ## Installation
 
