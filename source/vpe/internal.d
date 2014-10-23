@@ -64,9 +64,11 @@ void initalizeVPE() {
 	//log("Initializing SDL");
 	//enforce(SDL_Init(SDL_INIT_EVERYTHING) == 0, "Could not initialize SDL");
 
-	log("Initializing SDL_image");
-	auto flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
-	enforce(IMG_Init(flags) == flags, "Could not initialize SDL_image");
+	version(none) {
+		log("Initializing SDL_image");
+		auto flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
+		enforce(IMG_Init(flags) == flags, "Could not initialize SDL_image");
+	}
 
 	log("Initializing SDL_ttf");
 	enforce(TTF_Init() == 0, "Could not initialize SDL_ttf");
