@@ -1,4 +1,10 @@
-/// vpe.input submodule
+/**
+ * Mouse button enum
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.input.mousebutton;
 
 import vpe.internal;

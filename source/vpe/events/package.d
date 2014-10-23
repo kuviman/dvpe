@@ -1,4 +1,10 @@
-/// Managing events
+/**
+ * Managing events
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.events;
 
 import vpe.internal;

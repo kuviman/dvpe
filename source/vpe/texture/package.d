@@ -1,4 +1,10 @@
-/// texture manipulation
+/**
+ * Texture manipulation
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.texture;
 
 import vpe.internal;

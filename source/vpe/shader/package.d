@@ -1,4 +1,12 @@
-/// shaders
+/**
+ * Shaders
+ *
+ * Use this only if you need some custom shaders
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.shader;
 
 import vpe.internal;

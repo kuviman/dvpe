@@ -1,4 +1,10 @@
-/// clock
+/**
+ * Time management
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.clock;
 
 import vpe.internal;

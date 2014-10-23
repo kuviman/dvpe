@@ -1,4 +1,10 @@
-/// vpe.input submodule
+/**
+ * Keyboard related functions
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.input.keyboard;
 
 import vpe.internal;

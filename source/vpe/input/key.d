@@ -1,4 +1,10 @@
-/// vpe.input submodule
+/**
+ * Key enum
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.input.key;
 
 import vpe.internal;

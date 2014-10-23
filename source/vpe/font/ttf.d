@@ -1,4 +1,10 @@
-/// vpe.font submodule
+/**
+ * TTF Font
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.font.ttf;
 
 import vpe.internal;

@@ -1,4 +1,10 @@
-/// Font
+/**
+ * Font
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.font;
 
 public {

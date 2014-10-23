@@ -1,3 +1,23 @@
+/**
+ * VPE game engine
+ *
+ * Examples:
+ *	Render blue background
+ * ---
+ *	import vpe;
+ *
+ *	void main() {
+ *		while (!gotEvent!Quit) {
+ *			draw.clear(Color.Blue);
+ *			display.flip();
+ *		}
+ *	}
+ * ---
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe;
 
 public {

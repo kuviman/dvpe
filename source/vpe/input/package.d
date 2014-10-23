@@ -1,4 +1,10 @@
-/// Input manipulations
+/**
+ * Input manipulation
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.input;
 
 public {

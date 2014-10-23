@@ -1,4 +1,10 @@
-/// Display manipulation
+/**
+ * Display manipulation
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.display;
 
 import vpe.internal;

@@ -1,4 +1,21 @@
-/// state
+/**
+ * State management
+ *
+ * Alternative to oldschool mainloop
+ *
+ * Examples:
+ *	Render blue background
+ * ---
+ *	class Test : State {
+ *		override void render() { draw.clear(Color.Blue); }
+ *	}
+ *	void main() { new Test().run(); }
+ * ---
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.state;
 
 import vpe.internal;

@@ -1,4 +1,10 @@
-/// vpe.input submodule
+/**
+ * Mouse related functions
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.input.mouse;
 
 import vpe.internal;
