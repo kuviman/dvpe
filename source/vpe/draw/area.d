@@ -1,4 +1,20 @@
-/// vpe.draw submodule
+/**
+ * Rendering to the area
+ *
+ * Sometimes you need to render only to a part of the screen/texture
+ *
+ * Examples:
+ *	Rendering to right half of the screen
+ * ---
+ *	draw.beginArea(draw.width / 2, 0, draw.width / 2, draw.height);
+ *	// Render right half of the screen
+ *	draw.endArea();
+ * ---
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.draw.area;
 
 import vpe.internal;
@@ -19,7 +35,14 @@ package {
 	}
 }
 
-/// Begin rendering to area
+/**
+ * Begin rendering to area
+ * Params:
+ *	x = left coordinate of the area
+ *	y = bottom coordinate of the area
+ *	w = width of the area
+ *	h = height of the area
+ */
 void beginArea(int x, int y, int w, int h) {
 	renderAreaPosStack ~= renderAreaPos + vec2i(x, y);
 	renderAreaSizeStack ~= vec2i(w, h);

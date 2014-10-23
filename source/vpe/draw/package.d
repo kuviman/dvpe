@@ -1,5 +1,9 @@
 /**
  * Rendering primitives and render state manipulation
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
  */
 module vpe.draw;
 

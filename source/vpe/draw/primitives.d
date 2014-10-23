@@ -1,4 +1,10 @@
-/// vpe.draw submodule
+/**
+ * Functions for rendering primitives
+ *
+ * Copyright: © 2014 kuviman
+ * License: MIT
+ * Authors: kuviman
+ */
 module vpe.draw.primitives;
 
 import vpe.internal;
