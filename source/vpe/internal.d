@@ -20,6 +20,12 @@ public {
 GLFWwindow* window, coreWindow;
 bool vpeTerminated = false;
 
+nothrow extern(C) void cbError(int num, const(char)* msg) {
+	try {
+		log("Error %s: %s", num, msg.to!string);
+	} catch (Exception) {}
+}
+
 void initalizeVPE() {
 	log("Initializing VPE");
 	logIndent(); scope(exit) logUnindent();
@@ -40,6 +46,8 @@ void initalizeVPE() {
 	glfwGetVersion(&major, &minor, &revision);
 	log("Shared GLFW version %s.%s.%s", major, minor, revision);
 	log("GLFW version string \"%s\"", glfwGetVersionString().to!string);
+
+	glfwSetErrorCallback(&cbError);
 
 	log("Initializing GLFW");
 	enforce(glfwInit() == GL_TRUE, "Could not initialize GLFW");
