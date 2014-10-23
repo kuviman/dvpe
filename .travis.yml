@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get install cmake xorg-dev libglu1-mesa-dev
   - wget http://sourceforge.net/projects/glfw/files/glfw/3.0.4/glfw-3.0.4.zip/download -O glfw-3.0.4.zip
   - unzip glfw-3.0.4.zip
-  - cd glfw-3.0.4.zip
+  - cd glfw-3.0.4
   - cmake -DBUILD_SHARED_LIBS=1 -G "Unix Makefiles"
   - make
   - sudo make install
@@ -16,12 +16,20 @@ before_install:
   # install SDL 2
   - wget http://www.libsdl.org/release/SDL2-2.0.3.zip
   - unzip SDL-2.0.3.zip
-  - cd SDL-2.0.3.zip
+  - cd SDL-2.0.3
   - ./configure
   - make
   - sudo make install
   - cd ..
   # install SDL_image
+  - wget https://www.libsdl.org/projects/SDL_ttf/release/SDL2_image-2.0.0.zip
+  - unzip SDL2_image-2.0.0.zip
+  - cd SDL2_image-2.0.0
+  - ./configure
+  - make
+  - sudo make install
+  - cd ..
+  # install SDL_ttf
   - wget https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.12.zip
   - unzip SDL2_ttf-2.0.12.zip
   - cd SDL2_ttf-2.0.12
