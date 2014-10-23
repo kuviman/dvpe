@@ -1,0 +1,36 @@
+before_install:
+  # install apt repository for D
+  - sudo wget http://master.dl.sourceforge.net/project/d-apt/files/d-apt.list -O /etc/apt/sources.list.d/d-apt.list
+  - sudo apt-get update && sudo apt-get -y --allow-unauthenticated install --reinstall d-apt-keyring && sudo apt-get update
+  # install dub
+  - sudo apt-get install dub
+  # install GLFW 3
+  - sudo apt-get install cmake xorg-dev libglu1-mesa-dev
+  - wget http://sourceforge.net/projects/glfw/files/glfw/3.0.4/glfw-3.0.4.zip/download -O glfw-3.0.4.zip
+  - unzip glfw-3.0.4.zip
+  - cd glfw-3.0.4.zip
+  - cmake -DBUILD_SHARED_LIBS=1 -G "Unix Makefiles"
+  - make
+  - sudo make install
+  - cd ..
+  # install SDL 2
+  - wget http://www.libsdl.org/release/SDL2-2.0.3.zip
+  - unzip SDL-2.0.3.zip
+  - cd SDL-2.0.3.zip
+  - ./configure
+  - make
+  - sudo make install
+  - cd ..
+  # install SDL_image
+  - wget https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.12.zip
+  - unzip SDL2_ttf-2.0.12.zip
+  - cd SDL2_ttf-2.0.12
+  - ./configure
+  - make
+  - sudo make install
+  - cd ..
+install:
+  - dub add-local `pwd`
+script:
+  - cd examples/_template
+  - dub
