@@ -24,6 +24,7 @@ import std.stdio;
 private string indent;
 private void writeIndent() {
 	write(indent);
+	stdout.flush();
 }
 
 /// Indent log
