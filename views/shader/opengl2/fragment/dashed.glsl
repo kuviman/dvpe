@@ -1,14 +1,12 @@
-#version 150
+#version 120
 
 uniform vec4 color;
 
 uniform float gap, period;
-in vec3 modelPos;
-
-out vec4 fragColor;
+varying vec3 modelPos;
 
 void main() {
 	float x = mod(modelPos.x, period);
 	if (x < gap) discard;
-	fragColor = color;
+	gl_FragColor = color;
 }

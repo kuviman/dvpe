@@ -1,6 +1,11 @@
 import vpe;
 import vpl;
 
+version(OpenGL2)
+	enum gl2 = "_gl2";
+else
+	enum gl2 = "";
+
 Texture boxTex;
 
 void renderBox() {
@@ -36,7 +41,7 @@ void main() {
 	display.setMode(400, 400, false);
 
 	boxTex = Texture.loadFromMem(importBinary!"box.jpg");
-	Shader vig = new Shader(import("vignetting.glsl"));
+	Shader vig = new Shader(import("vignetting" ~ gl2 ~ ".glsl"));
 
 	auto mat = mat4.identity;
 

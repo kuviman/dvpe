@@ -1,11 +1,10 @@
-#version 150
+#version 120
 
 uniform vec4 color;
-in vec3 modelPos;
-out vec4 fragColor;
+varying vec3 modelPos;
 
 void main() {
 	float len = length(modelPos - vec3(0.5, 0.5, 0));
 	float k = pow(len * 2, 0.5);
-	fragColor = color * k;
+	gl_FragColor = color * k;
 }

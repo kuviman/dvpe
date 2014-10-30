@@ -1,6 +1,6 @@
 {
 	"name": "vpe",
-	"targetType": "sourceLibrary",
+	"targetType": "library",
 	"targetPath": "bin",
 	"dependencies": {
 		"derelict-glfw3": "~master",
@@ -10,11 +10,13 @@
 	"configurations": [
 		{
 			"name": "default",
-			"targetType": "library"
+		},
+		{
+			"name": "OpenGL2",
+			"versions": ["OpenGL2"]
 		},
 		{
 			"name": "buildDocs",
-			"targetType": "library",
 			"buildOptions": ["syntaxOnly"],
 			"dflags": ["-Df__dummy.html", "-Xfdocs.json"]
 		}

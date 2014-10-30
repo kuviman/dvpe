@@ -19,12 +19,13 @@ class RawPolygon {
 	}
 
 	void init() {
-		version(OPENGL_NEW) {
+		version(OpenGL2) {}
+		else {
 			glGenVertexArrays(1, &VAO);
-			//log("Creating VAO (id = %s)", VAO);
+			log("Creating VAO (id = %s)", VAO);
 			glBindVertexArray(VAO);
 			glGenBuffers(1, &VBO);
-			//log("Creating VBO (id = %s)", VBO);
+			log("Creating VBO (id = %s)", VBO);
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			GLfloat[] mesh = new GLfloat[points.length * 3];
 			foreach(i, p; points) {
@@ -47,17 +48,17 @@ class RawPolygon {
 			init();
 			myWindow = window;
 		}
-		version(OPENGL_NEW) {
+		version(OpenGL2) {
+			glBegin(GL_TRIANGLE_FAN);
+			foreach(pos; points)
+				glVertex3f(pos.x, pos.y, pos.z);
+			glEnd();
+		} else {
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			glBindVertexArray(VAO);
 			GLint posLoc = glGetAttribLocation(program, "position");
 			initAttr(posLoc);
 			glDrawArrays(GL_TRIANGLE_FAN, 0, cnt);
-		} else {
-			glBegin(GL_TRIANGLE_FAN);
-			foreach(pos; points)
-				glVertex3f(pos.x, pos.y, pos.z);
-			glEnd();
 		}
 	}
 

@@ -12,13 +12,24 @@
 		"variants": [
 			{
 				"name": "Run",
-				"shell_cmd": "dub"
+				"shell_cmd": "dub 2>&1"
+			},
+			{
+				"name": "Build VPE",
+				"working_dir": "$project_path",
+				"shell_cmd": "dub build"
 			},
 			{
 				"name": "Build Docs",
 				"working_dir": "$project_path",
 				"shell_cmd": "sh buildDocs.sh"
+			},
+			{
+				"name": "Run OpenGL2",
+				// "working_dir": "$project_path",
+				"shell_cmd": "dub --config=OpenGL2"
 			}
+
 		]
 	}]
 }

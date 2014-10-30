@@ -5,10 +5,10 @@ public {
 	import vpl;
 
 	import derelict.glfw3.glfw3;
-	version(OPENGL_NEW)
-		import derelict.opengl3.gl3;
-	else
+	version(OpenGL2)
 		import derelict.opengl3.gl;
+	else
+		import derelict.opengl3.gl3;
 	import derelict.sdl2.image;
 	import derelict.sdl2.sdl;
 	import derelict.sdl2.ttf;
@@ -33,14 +33,17 @@ void initalizeVPE() {
 	log("Initializing VPE");
 	logIndent(); scope(exit) logUnindent();
 
+	version(OpenGL2)
+		log("Using OpenGL2");
+
 	log("Loading DerelictGLFW3");
 	DerelictGLFW3.load();
-	version(OPENGL_NEW) {
-		log("Loading DerelictGL3");
-		DerelictGL3.load();
-	} else {
+	version(OpenGL2) {
 		log("Loading DerelictGL");
 		DerelictGL.load();
+	} else {
+		log("Loading DerelictGL3");
+		DerelictGL3.load();
 	}
 	log("Loading DerelictSDL2");
 	DerelictSDL2.load();
@@ -64,17 +67,16 @@ void initalizeVPE() {
 	//log("Initializing SDL");
 	//enforce(SDL_Init(SDL_INIT_EVERYTHING) == 0, "Could not initialize SDL");
 
-	version(none) {
-		log("Initializing SDL_image");
-		auto flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
-		enforce(IMG_Init(flags) == flags, "Could not initialize SDL_image");
-	}
+	log("Initializing SDL_image");
+	auto flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
+	enforce(IMG_Init(flags) == flags, "Could not initialize SDL_image");
 
 	log("Initializing SDL_ttf");
 	enforce(TTF_Init() == 0, "Could not initialize SDL_ttf");
 
 	log("Creating core window");
-	version (none) {
+	version(OpenGL2) {}
+	else version(OSX) {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -85,12 +87,12 @@ void initalizeVPE() {
 	enforce(coreWindow, "Could not create core window");
 
 	glfwMakeContextCurrent(coreWindow);
-	version(OPENGL_NEW) {
-		log("Reloading DerelictGL3");
-		DerelictGL3.reload();
-	} else {
+	version(OpenGL2) {
 		log("Reloading DerelictGL");
 		DerelictGL.reload();
+	} else {
+		log("Reloading DerelictGL3");
+		DerelictGL3.reload();
 	}
 
 	{
@@ -99,6 +101,7 @@ void initalizeVPE() {
 		initShaders();
 	}
 	initRender();
+	log("VPE initialized");
 }
 
 void terminateVPE() {
