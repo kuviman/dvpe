@@ -18,7 +18,7 @@ void quad() {
 void polygon(vec2[] points...) {
 	auto poly = new RawPolygon(points);
 	colorShader.renderPoly(poly);
-	//poly.free();
+	poly.free();
 }
 
 /// Render a line

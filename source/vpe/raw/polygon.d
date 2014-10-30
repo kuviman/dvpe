@@ -72,6 +72,7 @@ class RawPolygon {
 	}
 
 	void free() {
+		if (window !is myWindow) return;
 		glDeleteVertexArrays(1, &VAO);
 		glDeleteBuffers(1, &VBO);
 	}
