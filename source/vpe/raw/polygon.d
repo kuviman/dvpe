@@ -22,10 +22,10 @@ class RawPolygon {
 		version(OpenGL2) {}
 		else {
 			glGenVertexArrays(1, &VAO);
-			log("Creating VAO (id = %s)", VAO);
+			//log("Creating VAO (id = %s)", VAO);
 			glBindVertexArray(VAO);
 			glGenBuffers(1, &VBO);
-			log("Creating VBO (id = %s)", VBO);
+			//log("Creating VBO (id = %s)", VBO);
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			GLfloat[] mesh = new GLfloat[points.length * 3];
 			foreach(i, p; points) {
