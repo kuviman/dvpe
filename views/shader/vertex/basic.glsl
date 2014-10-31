@@ -11,5 +11,5 @@ void main() {
 	worldPos = (modelMatrix * vec4(modelPos, 1)).xyz;
 	screenPos = (projectionMatrix * vec4(worldPos, 1)).xyz;
 
-	gl_Position = vec4(screenPos, 1);
+	gl_Position = projectionMatrix * vec4(worldPos, 1);
 }

@@ -85,10 +85,16 @@ void translate(real x, real y, real z = 0) { multMatrix(mat4.createTranslation(x
  *	draw.load();
  * ---
  */
-void view(real fov, real aspect) {
+void view(real fov, real aspect, real near = 0.1, real far = 1e5) {
 	real w = fov * aspect / 2;
 	real h = fov / 2;
-	renderState.projectionMatrix = mat4.createScale(1 / w, 1 / h, 1);
+	alias near n;
+	alias far f;
+	renderState.projectionMatrix = mat4(
+		1 / w, 0, 0, 0,
+		0, 1 / h, 0, 0,
+		0, 0, -2 / (f - n), -(f + n) / (f - n),
+		0, 0, 0, 1);
 }
 /// ditto
 void view(real fov) {
