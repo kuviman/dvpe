@@ -100,3 +100,22 @@ void view(real fov, real aspect, real near = 0.1, real far = 1e5) {
 void view(real fov) {
 	view(fov, draw.aspect);
 }
+
+/**
+ * Set up perspective view
+ */
+void perspectiveView(real fov, real aspect, real near = 0.1, real far = 1e5) {
+	real t = near * tan(fov / 2);
+	real r = t * aspect;
+	alias near n;
+	alias far f;
+	renderState.projectionMatrix = mat4(
+		n / r, 0, 0, 0,
+		0, n / t, 0, 0,
+		0, 0, -(f + n) / (f - n), -2 * f * n / (f - n),
+		0, 0, -1, 0);
+}
+/// ditto
+void perspectiveView(real fov) {
+	perspectiveView(fov, draw.aspect);
+}
