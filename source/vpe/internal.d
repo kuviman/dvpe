@@ -87,13 +87,15 @@ void initalizeVPE() {
 	enforce(coreWindow, "Could not create core window");
 
 	glfwMakeContextCurrent(coreWindow);
+	GLVersion ver;
 	version(OpenGL2) {
 		log("Reloading DerelictGL");
-		DerelictGL.reload();
+		ver = DerelictGL.reload();
 	} else {
 		log("Reloading DerelictGL3");
-		DerelictGL3.reload();
+		ver = DerelictGL3.reload();
 	}
+	log("Loaded OpenGL version %s", ver);
 
 	{
 		log("Initializing shaders");
