@@ -85,7 +85,7 @@ void translate(real x, real y, real z = 0) { multMatrix(mat4.createTranslation(x
  *	draw.load();
  * ---
  */
-void view(real fov, real aspect, real near = 0.1, real far = 1e5) {
+void view(real fov, real aspect, real near = -1e-5, real far = 1e5) {
 	real w = fov * aspect / 2;
 	real h = fov / 2;
 	alias near n;
