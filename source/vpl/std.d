@@ -14,7 +14,7 @@ public {
 import std.exception : enforce;
 import std.algorithm : min, max, swap;
 import std.conv : to;
-import std.traits : CommonType, TypeTuple, isFloatingPoint;
+import std.traits : CommonType, TypeTuple, isFloatingPoint, ReturnType, ParameterTypeTuple;
 import std.string : toStringz;
 import std.array : array, split;
 import std.typecons : wrap;
