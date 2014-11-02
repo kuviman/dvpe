@@ -5,13 +5,16 @@ public {
 	import vpl;
 
 	import derelict.glfw3.glfw3;
-	version(OpenGL2)
-		import derelict.opengl3.gl;
-	else
-		import derelict.opengl3.gl3;
 	import derelict.sdl2.image;
 	import derelict.sdl2.sdl;
 	import derelict.sdl2.ttf;
+	version(OpenGL2) {
+		import gl = derelict.opengl3.gl;
+		alias gl.DerelictGL DerelictGL;
+	} else {
+		import gl = derelict.opengl3.gl3;
+		alias gl.DerelictGL3 DerelictGL3;
+	}
 
 	import vpe.raw;
 	import vpe.shader.internal;
@@ -19,6 +22,8 @@ public {
 	import vpe.events.internal;
 	import vpe.texture.internal;
 }
+
+alias gl.GLVersion GLVersion;
 
 GLFWwindow* window, coreWindow;
 bool vpeTerminated = false;

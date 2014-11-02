@@ -1,6 +1,7 @@
 module vpe.raw;
 
 public {
+	import vpe.raw.gl;
 	import vpe.raw.shader;
 	import vpe.raw.program;
 	import vpe.raw.polygon;
