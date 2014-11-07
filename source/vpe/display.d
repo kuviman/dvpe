@@ -60,11 +60,13 @@ void setMode(int width, int height, bool fullscreen = defaultFullscreen) {
 	glfwWindowHint(GLFW_VISIBLE, GL_TRUE);
 	window = glfwCreateWindow(width, height, title.toStringz, monitor, coreWindow);
 	enforce(window, "Could not create window");
-	log("Switching OpenGL context to new window");
-	glfwMakeContextCurrent(window);
 
 	log("Registering events for new window");
 	registerEvents(window);
+	
+	log("Switching OpenGL context to new window");
+	glfwMakeContextCurrent(window);
+	gl.glGetError(); // Ignore
 
 	reinitRender();
 }

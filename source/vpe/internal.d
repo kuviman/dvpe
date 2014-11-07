@@ -100,6 +100,9 @@ void initalizeVPE() {
 		log("Reloading DerelictGL3");
 		ver = DerelictGL3.reload();
 	}
+	
+	gl.glGetError(); // Ignore;
+	
 	log("Loaded OpenGL version %s", ver);
 
 	{
