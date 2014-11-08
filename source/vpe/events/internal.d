@@ -8,6 +8,7 @@ void registerEvents(GLFWwindow* window) {
 	glfwSetKeyCallback(window, &cbKey);
 	glfwSetMouseButtonCallback(window, &cbMouseButton);
 	glfwSetScrollCallback(window, &cbScroll);
+	glfwSetWindowSizeCallback(window, &cbWindowSize);
 }
 
 nothrow extern(C) void cbKey(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -33,5 +34,11 @@ nothrow extern(C) void cbMouseButton(GLFWwindow* window, int button, int action,
 nothrow extern(C) void cbScroll(GLFWwindow* window, double dx, double dy) {
 	try {
 		eventQueue!Scroll ~= Scroll(dx, -dy);
+	} catch (Exception) {}
+}
+
+nothrow extern(C) void cbWindowSize(GLFWwindow* window, int w, int h) {
+	try {
+		glViewport(0, 0, w, h);
 	} catch (Exception) {}
 }
