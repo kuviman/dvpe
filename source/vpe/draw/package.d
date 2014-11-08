@@ -92,3 +92,28 @@ void depthTesting(bool value) {
 	if (value) glEnable(GL_DEPTH_TEST);
 	else glDisable(GL_DEPTH_TEST);
 }
+
+enum BlendMode {
+	None,
+	Default,
+	AddAlpha
+}
+
+private BlendMode _blendMode = BlendMode.Default;
+
+BlendMode blendMode() { return _blendMode; }
+void blendMode(BlendMode mode) {
+	_blendMode = mode;
+	glEnable(GL_BLEND);
+	final switch (mode) {
+		case BlendMode.None:
+			glBlendFunc(GL_ONE, GL_ZERO);
+			break;
+		case BlendMode.Default:
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			break;
+		case BlendMode.AddAlpha:
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+			break;
+	}
+}

@@ -49,7 +49,9 @@ mixin aliasPlain!(
 	"GL_UNSIGNED_BYTE",
 	"GL_TEXTURE_MIN_FILTER",
 	"GL_TEXTURE_MAG_FILTER",
-	"GL_NO_ERROR"
+	"GL_NO_ERROR",
+	"GL_ONE",
+	"GL_ZERO"
 );
 
 private bool inBeginEnd = false;

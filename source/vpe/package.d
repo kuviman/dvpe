@@ -31,6 +31,8 @@ public {
 	import vpe.texture;
 	import vpe.font;
 	import vpe.state;
+
+	import vpe.draw : BlendMode;
 }
 
 import vpe.internal;
