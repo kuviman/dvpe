@@ -121,3 +121,14 @@ void perspectiveView(real fov, real aspect, real near = 0.1, real far = 1e5) {
 void perspectiveView(real fov) {
 	perspectiveView(fov, draw.aspect);
 }
+
+void billboard() {
+	auto mat = renderState.modelMatrix;
+	real x = sqrt(mat[0, 0] ^^ 2 + mat[1, 0] ^^ 2 + mat[2, 0] ^^ 2);
+	real y = sqrt(mat[0, 1] ^^ 2 + mat[1, 1] ^^ 2 + mat[2, 1] ^^ 2);
+	real z = sqrt(mat[0, 2] ^^ 2 + mat[1, 2] ^^ 2 + mat[2, 2] ^^ 2);
+	mat[0, 0] = x; mat[0, 1] = 0; mat[0, 2] = 0;
+	mat[1, 0] = 0; mat[1, 1] = y; mat[1, 2] = 0;
+	mat[2, 0] = 0; mat[2, 1] = 0; mat[2, 2] = z;
+	renderState.modelMatrix = mat;
+}
