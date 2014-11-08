@@ -1,0 +1,21 @@
+{
+	"name": "VPE ParticleSystem Example",
+	"targetPath": "bin",
+	"targetType": "executable",
+	"dependencies": {
+		"vpe": "~master"
+	},
+	"sourcePaths": ["."],
+	"configurations": [
+		{
+			"name": "default"
+		},
+		{
+			"name": "OpenGL2",
+			"versions": ["OpenGL2"],
+			"subConfigurations": {
+				"vpe": "OpenGL2"
+			}
+		}
+	]
+}
