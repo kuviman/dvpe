@@ -66,6 +66,8 @@ void scale(real kx, real ky, real kz = 1) { multMatrix(mat4.createScale(kx, ky, 
  *	z = translation along z axis
  */
 void translate(real x, real y, real z = 0) { multMatrix(mat4.createTranslation(x, y, z)); }
+void translate(vec2 v) { translate(v.x, v.y); }
+void translate(vec3 v) { translate(v.x, v.y, v.z); }
 
 /**
  * Set up the view
