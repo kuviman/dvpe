@@ -44,6 +44,7 @@ void main() {
 	Shader vig = new Shader(import("vignetting" ~ gl2 ~ ".glsl"));
 
 	auto mat = mat4.identity;
+	vec2 lastMpos = mouse.position;
 
 	while (!gotEvent!Quit) {
 		if (gotEvent!KeyDown(Key.Escape)) break;
@@ -55,6 +56,15 @@ void main() {
 			mat = mat4.createRotation(0, 1, 0, ax) *
 				mat4.createRotation(1, 0, 0, ay) * mat;
 		}
+		vec2 curPos = mouse.position;
+		if (MouseButton.Left.pressed) {
+			enum sens = 0.01;
+			real ax = (curPos - lastMpos).x * sens;
+			real ay = -(curPos - lastMpos).y * sens;
+			mat = mat4.createRotation(0, 1, 0, ax) *
+				mat4.createRotation(1, 0, 0, ay) * mat;
+		}
+		lastMpos = curPos;
 
 		draw.clear(0.8, 0.8, 1);
 
