@@ -14,3 +14,5 @@ public {
 
 	import mouse = vpe.input.mouse;
 }
+
+import vpe.input.mouse : pressed;

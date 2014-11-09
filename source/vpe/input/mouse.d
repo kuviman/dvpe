@@ -16,3 +16,8 @@ vec2 position() {
 	y = display.height - 1 - y;
 	return vec2(x, y);
 }
+
+/// Check if a mouse button is pressed
+bool pressed(MouseButton button) {
+	return glfwGetMouseButton(window, button) == GLFW_PRESS;
+}
