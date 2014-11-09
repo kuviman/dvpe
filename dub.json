@@ -3,9 +3,9 @@
 	"targetType": "library",
 	"targetPath": "bin",
 	"dependencies": {
-		"derelict-glfw3": "~master",
-		"derelict-gl3": "~master",
-		"derelict-sdl2": "~master"
+		"derelict-glfw3": ">=1.0.2",
+		"derelict-gl3": ">=1.0.10",
+		"derelict-sdl2": ">=1.2.8"
 	},
 	"configurations": [
 		{

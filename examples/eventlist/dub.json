@@ -3,7 +3,7 @@
 	"targetPath": "bin",
 	"targetType": "executable",
 	"dependencies": {
-		"vpe": "~master"
+		"vpe": "~>0.1-alpha"
 	},
 	"sourcePaths": ["."],
 	"configurations": [
