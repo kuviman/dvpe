@@ -16,3 +16,4 @@ public {
 }
 
 import vpe.input.mouse : pressed;
+alias vpe.input.keyboard.pressed pressed;
