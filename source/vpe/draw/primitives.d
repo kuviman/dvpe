@@ -36,6 +36,15 @@ void line(real x1, real y1, real x2, real y2, real width) {
 	line(vec2(x1, y1), vec2(x2, y2), width);
 }
 
+/// Render a polyline
+void polyline(vec2[] points, real width, bool closed = false) {
+	enforce(points.length >= 2, "At least two points are needed");
+	foreach (i; 0 .. points.length - 1)
+		line(points[i], points[i + 1], width);
+	if (closed)
+		line(points[$ - 1], points[0], width);
+}
+
 /// Render a dashed line
 void dashedLine(vec2 p1, vec2 p2, real width, real gap = -1, real period = -1) {
 	if (period < 0) period = width * 7;
