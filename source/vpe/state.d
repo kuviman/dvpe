@@ -46,12 +46,23 @@ abstract class State {
 				mouseButtonDown(e.button);
 			foreach (e; getEvents!MouseButtonUp)
 				mouseButtonUp(e.button);
+			foreach (Etype; EventTypes) {
+				foreach (e; getEvents!Etype) {
+					if (e !in binding!Etype) continue;
+					foreach (f; binding!Etype[e])
+						f();
+				}
+			}
 			if (gotEvent!Quit)
 				running = false;
 			update(clock.tick());
 			render();
 			display.flip();
 		}
+	}
+
+	void bind(E)(E event, void delegate() f) {
+		binding!E[event] ~= f;
 	}
 
 	/// Update the state
@@ -65,4 +76,9 @@ abstract class State {
 	}
 
 	bool running = false;
+
+private:
+	template binding(E) {
+		void delegate()[][E] binding;
+	}
 }
