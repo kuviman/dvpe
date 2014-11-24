@@ -63,7 +63,7 @@ void setMode(int width, int height, bool fullscreen = defaultFullscreen) {
 
 	log("Registering events for new window");
 	registerEvents(window);
-	
+
 	log("Switching OpenGL context to new window");
 	glfwMakeContextCurrent(window);
 	gl.glGetError(); // Ignore
@@ -96,4 +96,16 @@ void flip() {
 		//glfwSetWindowShouldClose(window, GL_FALSE);
 	}
 	freeResources();
+	clock.tick();
+}
+
+auto FPS() { return clock.FPS; }
+
+private {
+	Clock _clock = null;
+	Clock clock() {
+		if (_clock is null)
+			_clock = new Clock();
+		return _clock;
+	}
 }
