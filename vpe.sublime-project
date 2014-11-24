@@ -3,7 +3,7 @@
 		"follow_symlinks": true,
 		"path": ".",
 		"folder_exclude_patterns": [".dub", "bin"],
-		"file_exclude_patterns": [".gitignore"]
+		"file_exclude_patterns": [".gitignore", "trace.def"]
 	}],
 	"build_systems": [{
 		"name": "vpe",
@@ -28,6 +28,10 @@
 				"name": "Run OpenGL2",
 				// "working_dir": "$project_path",
 				"shell_cmd": "dub --config=OpenGL2"
+			},
+			{
+				"name": "Run Profiling",
+				"shell_cmd": "dub --build=profile"
 			}
 
 		]

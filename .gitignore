@@ -3,3 +3,5 @@ docs/
 bin/
 *.sublime-workspace
 dub.selections.json
+trace.def
+trace.log
