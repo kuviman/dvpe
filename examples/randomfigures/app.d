@@ -69,7 +69,8 @@ void main() {
 		draw.translate(10, 10);
 		draw.scale(20);
 		draw.color(1, 1, 1, 0.75);
-		auto text = "NumFugures: %s; FPS: %s".format(figures.length, clock.FPS.to!int);
+		auto text = mixin(subst!"NumFigures: $(figures.length); FPS: $(clock.FPS.to!int)");
+		//auto text = "NumFigures: %s; FPS: %s".format(figures.length, clock.FPS.to!int);
 		draw.rect(0, 0, draw.measureText(text), 1);
 		draw.color(Color.Black);
 		draw.text(text);

@@ -70,3 +70,41 @@ auto opOpAssign(string op, T1, T2)(ref T1 a, T2 b) { return mixin("a " ~ op ~ "=
 template importBinary(string path) {
 	const byte[] importBinary = cast(const byte[]) import(path);
 }
+
+template subst(string s) {
+	private string substImpl(string s) {
+		size_t i = 0;
+		string fs = "";
+		string[] args;
+		while (i < s.length) {
+			if (s[i] == '$') {
+				int j = i + 1;
+				assert(s[j] == '(');
+				j++;
+				int d = 1;
+				string curArg = "";
+				while (d > 0) {
+					if (s[j] == '(') d++;
+					if (s[j] == ')') d--;
+					if (d > 0)
+						curArg ~= s[j];
+					j++;
+				}
+				args ~= curArg;
+				i = j;
+				fs ~= "%s";
+			} else {
+				fs ~= s[i];
+				i++;
+			}
+		}
+		string argString = "";
+		foreach (j, arg; args) {
+			if (j > 0) argString ~= ", ";
+			argString ~= arg;
+		}
+		string res = "\"%s\".format(%s)".format(fs, argString);
+		return res;
+	}
+	enum subst = substImpl(s);
+}
