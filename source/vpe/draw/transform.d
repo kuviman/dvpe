@@ -103,6 +103,11 @@ void view(real fov) {
 	view(fov, draw.aspect);
 }
 
+void plainview() {
+	draw.view(draw.height);
+	draw.translate(-draw.width / 2.0, -draw.height / 2.0);
+}
+
 /**
  * Set up perspective view
  */
