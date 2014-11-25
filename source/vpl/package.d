@@ -108,3 +108,7 @@ template subst(string s) {
 	}
 	enum subst = substImpl(s);
 }
+
+int getBit(int x, int i) {
+	return (x >> i) & 1;
+}
