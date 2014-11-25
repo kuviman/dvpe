@@ -85,7 +85,7 @@ int height() { return size.y; }
 real aspect() { return cast(real) width / height; }
 
 /// Swap buffers & update event queue
-void flip() {
+real flip() {
 	if (window is coreWindow)
 		setDefaultMode();
 	clearEvents();
@@ -96,7 +96,7 @@ void flip() {
 		//glfwSetWindowShouldClose(window, GL_FALSE);
 	}
 	freeResources();
-	clock.tick();
+	return clock.tick();
 }
 
 auto FPS() { return clock.FPS; }
