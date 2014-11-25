@@ -35,7 +35,6 @@ abstract class State {
 
 	/// Run the mainloop
 	void run() {
-		auto clock = new Clock();
 		running = true;
 		while (running) {
 			foreach (e; getEvents!KeyDown)
@@ -55,9 +54,8 @@ abstract class State {
 			}
 			if (gotEvent!Quit)
 				running = false;
-			update(clock.tick());
 			render();
-			display.flip();
+			update(display.flip());
 		}
 	}
 
