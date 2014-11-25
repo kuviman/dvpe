@@ -101,6 +101,17 @@ struct matrix(size_t n, size_t m, T = real) {
 				}
 			return res;
 		}
+		static auto fromOrts(T...)(T orts) if (T.length == n) {
+			matrix res;
+			foreach (i; RangeTuple!(n - 1)) {
+				foreach (j; RangeTuple!n)
+					res[i, j] = orts[j][i];
+			}
+			foreach (j; RangeTuple!(n - 1))
+				res[n - 1, j] = 0;
+			res[n - 1, n - 1] = 1;
+			return res;
+		}
 	}
 
 	static if (n == m && n == 4 && isFloatingPoint!T) {
