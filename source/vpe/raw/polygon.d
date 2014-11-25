@@ -63,33 +63,37 @@ class RawPolygon {
 	}
 
 	~this() {
-		if (vpeTerminated) return;
-
-		// Should not delete if created in another window
-
-		//VAOfreeQ.push(VAO);
-		//VBOfreeQ.push(VBO);
+		if (vpeTerminated || myWindow is null) return;
+		VAOfreeQ.push(STuple(myWindow, VAO));
+		VBOfreeQ.push(STuple(myWindow, VBO));
 	}
 
 	void free() {
 		if (window !is myWindow) return;
 		glDeleteVertexArrays(1, &VAO);
 		glDeleteBuffers(1, &VBO);
+		myWindow = null;
 	}
 
 	GLFWwindow* myWindow = null;
 }
 
-private auto VAOfreeQ = new shared SynQueue!GLuint();
-private auto VBOfreeQ = new shared SynQueue!GLuint();
-void freePolygons() {
+private struct STuple {
+	GLFWwindow* window;
 	GLuint id;
-	while (VAOfreeQ.pop(id)) {
-		//log("Deleting VAO (id = %s)", id);
-		glDeleteVertexArrays(1, &id);
+};
+private auto VAOfreeQ = new shared SynQueue!STuple();
+private auto VBOfreeQ = new shared SynQueue!STuple();
+void freePolygons() {
+	STuple stupr;
+	while (VAOfreeQ.pop(stupr)) {
+		if (stupr.window !is window) continue;
+		//log("Deleting VAO (id = %s)", stupr.id);
+		glDeleteVertexArrays(1, &stupr.id);
 	}
-	while (VBOfreeQ.pop(id)) {
-		//log("Deleting VBO (id = %s)", id);
-		glDeleteBuffers(1, &id);
+	while (VBOfreeQ.pop(stupr)) {
+		if (stupr.window !is window) continue;
+		//log("Deleting VBO (id = %s)", stupr.id);
+		glDeleteBuffers(1, &stupr.id);
 	}
 }
