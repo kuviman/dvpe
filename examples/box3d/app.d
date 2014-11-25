@@ -1,61 +1,37 @@
 import vpe;
 import vpl;
 
-version(OpenGL2)
-	enum gl2 = "_gl2";
-else
-	enum gl2 = "";
-
 Texture boxTex;
-
-void renderBox() {
-	draw.save();
-	boxTex.render();
-	draw.translate(0, 0, 1);
-	boxTex.render();
-	draw.load();
-
-	draw.save();
-	draw.multMatrix(mat4.createRotation(vec3(1, 0, 0), PI / 2));
-	boxTex.render();
-	draw.load();
-	draw.save();
-	draw.translate(0, 1, 0);
-	draw.multMatrix(mat4.createRotation(vec3(1, 0, 0), PI / 2));
-	boxTex.render();
-	draw.load();
-
-	draw.save();
-	draw.multMatrix(mat4.createRotation(vec3(0, -1, 0), PI / 2));
-	boxTex.render();
-	draw.load();
-	draw.save();
-	draw.translate(1, 0, 0);
-	draw.multMatrix(mat4.createRotation(vec3(0, -1, 0), PI / 2));
-	boxTex.render();
-	draw.load();
+Shader vig;
+static this() {
+	boxTex = Texture.loadFromMem(importBinary!"box.jpg");
+	vig = new Shader(import("vignetting.glsl"));
 }
 
-void main() {
-	display.title = "VPE Box3D Example";
-	display.setMode(400, 400, false);
-
-	boxTex = Texture.loadFromMem(importBinary!"box.jpg");
-	Shader vig = new Shader(import("vignetting" ~ gl2 ~ ".glsl"));
-
-	auto mat = mat4.identity;
-	vec2 lastMpos = mouse.position;
-
-	while (!gotEvent!Quit) {
-		if (gotEvent!KeyDown(Key.Escape)) break;
-
-		foreach (e; getEvents!Scroll) {
-			enum sens = 0.1;
-			real ax = e.dx * sens;
-			real ay = -e.dy * sens;
-			mat = mat4.createRotation(0, 1, 0, ax) *
-				mat4.createRotation(1, 0, 0, ay) * mat;
+void renderBox() {
+	foreach (coord; 0..3) {
+		foreach (val; 0..2) {
+			vec3[] pts;
+			foreach (mask; RangeTuple!(1 << 3)) {
+				if (((mask >> coord) & 1) != val) continue;
+				pts ~= vec3(mask.getBit(0), mask.getBit(1), mask.getBit(2));
+			}
+			draw.save();
+			draw.multMatrix(mat4.fromOrts(pts[1] - pts[0], pts[2] - pts[0], vec3(0, 0, 0), pts[0]));
+			boxTex.render();
+			draw.load();
 		}
+	}
+}
+
+class Box3D : State {
+	this() {
+		bind(KeyDown(Key.Escape), &close);
+	}
+
+	mat4 mat = mat4.identity;
+	vec2 lastMpos = vec2(0, 0);
+	override void update(real dt) {
 		vec2 curPos = mouse.position;
 		if (MouseButton.Left.pressed) {
 			enum sens = 0.01;
@@ -65,31 +41,32 @@ void main() {
 				mat4.createRotation(1, 0, 0, ay) * mat;
 		}
 		lastMpos = curPos;
+	}
 
+	override void render() {
 		draw.clear(0.8, 0.8, 1);
 
 		draw.save();
-		draw.scale(2);
 		draw.translate(-1, -1);
 		draw.scale(2);
 		draw.color(0, 0, 0, 1);
 		vig.render();
 		draw.load();
 
+		draw.depthTesting = true;
 		draw.save();
 		draw.perspectiveView(PI / 4);
-
 		draw.translate(0, 0, -3);
-
-		draw.scale(1);
 		draw.multMatrix(mat);
 		draw.translate(-0.5, -0.5, -0.5);
-		draw.depthTesting = true;
 		renderBox();
-		draw.depthTesting = false;
-
 		draw.load();
-
-		display.flip();
+		draw.depthTesting = false;
 	}
+}
+
+void main() {
+	display.title = "VPE Box3D Example";
+	display.setMode(400, 400, false);
+	new Box3D().run();
 }

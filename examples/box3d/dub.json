@@ -10,13 +10,6 @@
 	"configurations": [
 		{
 			"name": "default"
-		},
-		{
-			"name": "OpenGL2",
-			"versions": ["OpenGL2"],
-			"subConfigurations": {
-				"vpe": "OpenGL2"
-			}
 		}
 	]
 }
