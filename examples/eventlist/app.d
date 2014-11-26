@@ -24,12 +24,18 @@ void main() {
 
 		draw.color(0, 0, 0);
 
+		draw.save();
 		draw.translate(20, 20);
 		draw.scale(16);
 		foreach_reverse (line; lines) {
 			draw.text(line);
 			draw.translate(0, 1);
 		}
+		draw.load();
+
+		draw.translate(draw.width -20, 20);
+		draw.scale(16);
+		draw.text!"mono"("FPS : %s".format(display.FPS.to!int), 1);
 
 		draw.load();
 

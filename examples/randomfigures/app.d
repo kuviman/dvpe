@@ -69,9 +69,9 @@ class RFS : State {
 		draw.scale(20);
 		auto text = mixin(subst!"NumFigures: $(figures.length); FPS: $(display.FPS.to!int)");
 		draw.color(1, 1, 1, 0.75);
-		draw.rect(0, 0, draw.measureText(text), 1);
+		draw.rect(0, 0, draw.measureText!"mono"(text), 1);
 		draw.color(Color.Black);
-		draw.text(text);
+		draw.text!"mono"(text);
 		draw.load();
 
 		draw.load();
