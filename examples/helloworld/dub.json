@@ -1,0 +1,9 @@
+{
+	"name": "VPE HelloWorld Example",
+	"targetPath": "bin",
+	"targetType": "executable",
+	"dependencies": {
+		"vpe": "~>0.1-alpha"
+	},
+	"sourcePaths": ["."]
+}

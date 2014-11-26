@@ -18,16 +18,9 @@ You also need dynamic libraries:
 
 ## Installation
 
-To install:
 ```
 $ git clone https://github.com/kuviman/vpe.git
 $ dub add-local vpe
-```
-
-To build (not necessary):
-```
-$ cd vpe
-$ dub build
 ```
 
 ## Documentation
@@ -36,8 +29,33 @@ $ dub build
 
 ## Usage
 
-Please see `examples/` folder
+Add a depencency to your dub project:
+```
+"vpe": "~>0.1-alpha"
+```
 
+Hello world example:
+```
+import vpe;
+void main() {
+	display.title = "Hello, world!";
+	while (!gotEvent!Quit) {
+		draw.clear(Color.White);
+		draw.save();
+		draw.plainview();
+		draw.color(Color.Black);
+		draw.translate(draw.width / 2, draw.height / 2);
+		draw.scale(32);
+		draw.text("Hello, world!", 0.5);
+		draw.load();
+		display.flip();
+	}
+}
+```
+
+Also, see `examples/` folder
+
+![Hello, World](screenshots/helloworld.png)
 ![Pong](screenshots/pong.png)
 ![Random Figures Sample](screenshots/rfs.png)
 ![Particle System](screenshots/ps.png)
