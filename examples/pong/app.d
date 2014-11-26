@@ -187,14 +187,14 @@ class World {
 		draw.color(col);
 		draw.translate(-size.x / 2, 0);
 		draw.scale(size.y / 3);
-		draw.text(scoreLeft.to!string, 0.5, 0.5);
+		draw.text!"mono"(scoreLeft.to!string, 0.5, 0.5);
 		draw.load();
 
 		draw.save();
 		draw.color(col);
 		draw.translate(size.x / 2, 0);
 		draw.scale(size.y / 3);
-		draw.text(scoreRight.to!string, 0.5, 0.5);
+		draw.text!"mono"(scoreRight.to!string, 0.5, 0.5);
 		draw.load();
 
 		foreach (player; players)
@@ -317,10 +317,7 @@ class Menu : State {
 
 void main() {
 	display.title = "VPE Pong Example";
-	auto font = cast(TTFFont) draw.font;
-	if (font !is null) {
-		font.smooth = false;
-	}
+	auto font = cast(TTFFont)draw.font!"mono";
+	if (font !is null) font.smooth = false;
 	new Menu().run();
-	//new Pong().run();
 }
