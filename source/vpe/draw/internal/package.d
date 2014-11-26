@@ -11,6 +11,7 @@ void initRender() {
 	auto font = TTFFont.loadFromMem(importBinary!"font_default.ttf", 32);
 	font.style = TTFFont.Style.Bold;
 	draw.font = font;
+	draw.font!"mono" = TTFFont.loadFromMem(importBinary!"font_default_mono.ttf", 32);
 }
 
 void reinitRender() {
