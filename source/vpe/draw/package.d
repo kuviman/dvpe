@@ -11,6 +11,7 @@ public {
 	import vpe.draw.transform;
 	import vpe.draw.area;
 	import vpe.draw.primitives;
+	import vpe.draw.text;
 }
 
 import vpe.internal;
@@ -50,27 +51,6 @@ vec2i size() {
 		return currentTarget.size;
 	}
 	return renderAreaSizeStack[$ - 1];
-}
-
-/// Default rendering font
-Font font;
-
-/// Measure text using default font
-auto measureText(string text) { return font.measure(text); }
-
-/**
- * Render text using default font
- * Params:
- *	text = Text to render
- *	ax = horizontal alignment
- *	ay = vertical alignment
- */
-void text(string text, real ax, real ay = 0) {
-	font.render(text, ax, ay);
-}
-/// ditto
-void text(string text) {
-	font.render(text);
 }
 
 /// Get rendering area width

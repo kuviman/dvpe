@@ -33,6 +33,7 @@ public {
 	import vpe.state;
 
 	import vpe.draw : BlendMode;
+	import vpe.draw.text : FontType;
 }
 
 import vpe.internal;
