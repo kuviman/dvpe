@@ -32,6 +32,10 @@
 			{
 				"name": "Run Profiling",
 				"shell_cmd": "dub --build=profile"
+			},
+			{
+				"name": "Rebuild",
+				"shell_cmd": "dub build --force"
 			}
 
 		]
