@@ -78,7 +78,7 @@ template subst(string s) {
 		string[] args;
 		while (i < s.length) {
 			if (s[i] == '$') {
-				int j = i + 1;
+				size_t j = i + 1;
 				assert(s[j] == '(');
 				j++;
 				int d = 1;
