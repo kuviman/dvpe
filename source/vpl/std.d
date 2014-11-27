@@ -12,7 +12,7 @@ public {
 }
 
 import std.exception : enforce;
-import std.algorithm : min, max, swap;
+import std.algorithm : min, max, swap, filter, map;
 import std.conv : to;
 import std.traits : CommonType, TypeTuple, isFloatingPoint, ReturnType, ParameterTypeTuple;
 import std.string : toStringz;
