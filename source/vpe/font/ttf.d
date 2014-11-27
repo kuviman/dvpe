@@ -28,23 +28,27 @@ class TTFFont : Font {
 
 	private this() {}
 
+	Texture makeTexture(string text) {
+		SDL_Surface* surface = smooth ?
+			TTF_RenderText_Blended(rfont, text.toStringz, SDL_Color(0xff, 0xff, 0xff)):
+			TTF_RenderText_Solid(rfont, text.toStringz, SDL_Color(0xff, 0xff, 0xff));
+		auto res = textureFromSurface(surface);
+		SDL_FreeSurface(surface);
+		return res;
+	}
+
 	real measure(string text) {
 		int w, h;
 		TTF_SizeText(rfont, text.toStringz, &w, &h);
 		return cast(real) w / h;
 	}
 	void render(string text) {
-		SDL_Surface* surface = smooth ?
-			TTF_RenderText_Blended(rfont, text.toStringz, SDL_Color(0xff, 0xff, 0xff)):
-			TTF_RenderText_Solid(rfont, text.toStringz, SDL_Color(0xff, 0xff, 0xff));
-		auto tex = textureFromSurface(surface);
+		auto tex = getCachedTexture(text);
 		tex.smooth = _smooth;
 		draw.save();
 		draw.scale(cast(real) tex.width / tex.height, 1);
 		tex.render();
-		tex.free();
 		draw.load();
-		SDL_FreeSurface(surface);
 	}
 
 	/// Load from file
@@ -74,6 +78,20 @@ class TTFFont : Font {
 		_smooth = value;
 	}
 
+	size_t maxCacheSize = 128;
+
 private:
 	RawTTF rfont;
+
+	Texture[string] cache;
+	auto getCachedTexture(string text) {
+		if (cache.length > maxCacheSize) {
+			foreach (tex; cache.values)
+				tex.free();
+			cache = null;
+		}
+		if (text !in cache)
+			cache[text] = makeTexture(text);
+		return cache[text];
+	}
 }
