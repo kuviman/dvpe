@@ -12,7 +12,11 @@
 		"variants": [
 			{
 				"name": "Run",
-				"shell_cmd": "dub 2>&1"
+				"shell_cmd": "dub"
+			},
+			{
+				"name": "Run Release",
+				"shell_cmd": "dub --build=release"
 			},
 			{
 				"name": "Build VPE",
