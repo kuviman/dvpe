@@ -4,8 +4,8 @@ import vpl;
 void main() {
 	log("Set title");
 	display.title = "VPE Test";
-	//log("Go fullscreen");
-	//display.fullscreen = true;
+	log("Go fullscreen");
+	display.fullscreen = true;
 	log("Go windowed");
 	display.fullscreen = false;
 	log("Creating a texture");
