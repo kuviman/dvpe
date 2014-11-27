@@ -1,0 +1,21 @@
+{
+	"name": "VPE Test",
+	"targetPath": "bin",
+	"targetType": "executable",
+	"dependencies": {
+		"vpe": "~>0.1-alpha"
+	},
+	"sourcePaths": ["."],
+	"configurations": [
+		{
+			"name": "default"
+		},
+		{
+			"name": "OpenGL2",
+			"versions": ["OpenGL2"],
+			"subConfigurations": {
+				"vpe": "OpenGL2"
+			}
+		}
+	]
+}
