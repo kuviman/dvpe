@@ -8,3 +8,8 @@ auto textureFromSurface(SDL_Surface* surface) {
 	tex.setSDL_Surface(surface);
 	return tex;
 }
+
+void free(Texture tex) {
+	tex.tex.free();
+	tex.tex = null;
+}

@@ -8,11 +8,16 @@ class RawTexture {
 		//log("Creating texture (id = %s)", id);
 	}
 	~this() {
-		if (vpeTerminated) return;
+		if (vpeTerminated || freed) return;
+		freeQ.push(id);
+	}
+	void free() {
+		freed = true;
 		freeQ.push(id);
 	}
 	alias id this;
 	GLuint id;
+	bool freed = false;
 }
 
 private auto freeQ = new shared SynQueue!GLuint();

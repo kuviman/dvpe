@@ -42,6 +42,7 @@ class TTFFont : Font {
 		draw.save();
 		draw.scale(cast(real) tex.width / tex.height, 1);
 		tex.render();
+		tex.free();
 		draw.load();
 		SDL_FreeSurface(surface);
 	}
