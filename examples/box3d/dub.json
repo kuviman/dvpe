@@ -6,10 +6,5 @@
 		"vpe": "~>0.1-alpha"
 	},
 	"sourcePaths": ["."],
-	"stringImportPaths": ["."],
-	"configurations": [
-		{
-			"name": "default"
-		}
-	]
+	"stringImportPaths": ["."]
 }
