@@ -5,3 +5,4 @@ bin/
 dub.selections.json
 trace.def
 trace.log
+temp/
