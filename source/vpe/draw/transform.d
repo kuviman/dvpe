@@ -69,6 +69,10 @@ void translate(real x, real y, real z = 0) { multMatrix(mat4.createTranslation(x
 void translate(vec2 v) { translate(v.x, v.y); }
 void translate(vec3 v) { translate(v.x, v.y, v.z); }
 
+void origin(real x, real y, real z = 0) { translate(-x, -y, -z); }
+void origin(vec2 v) { origin(v.x, v.y); }
+void origin(vec3 v) { origin(v.x, v.y, v.z); }
+
 /**
  * Set up the view
  *
