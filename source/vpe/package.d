@@ -31,6 +31,7 @@ public {
 	import vpe.texture;
 	import vpe.font;
 	import vpe.state;
+	import vpe.camera;
 
 	import vpe.draw : BlendMode;
 	import vpe.draw.text : FontType;
